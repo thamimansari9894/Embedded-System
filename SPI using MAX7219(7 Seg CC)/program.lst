@@ -1,0 +1,784 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.80 build 6738 
+                                                                                               Sun Mar 23 10:52:44 2025
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 6738
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 6738"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_MAX_INIT
+    43                           	FNCALL	_main,_SPI_WRITE
+    44                           	FNCALL	_MAX_INIT,_SPI_WRITE
+    45                           	FNROOT	_main
+    46                           	global	_PORTC
+    47                           psect	text66,local,class=CODE,delta=2
+    48                           global __ptext66
+    49  0000                     __ptext66:
+    50  0007                     _PORTC	set	7
+    51                           	global	_SSPBUF
+    52  0013                     _SSPBUF	set	19
+    53                           	global	_SSPCON
+    54  0014                     _SSPCON	set	20
+    55                           	global	_RC2
+    56  003A                     _RC2	set	58
+    57                           	global	_SSPIF
+    58  0063                     _SSPIF	set	99
+    59                           	global	_SSPSTAT
+    60  0094                     _SSPSTAT	set	148
+    61                           	global	_TRISC2
+    62  043A                     _TRISC2	set	1082
+    63                           	global	_TRISC3
+    64  043B                     _TRISC3	set	1083
+    65                           	global	_TRISC4
+    66  043C                     _TRISC4	set	1084
+    67                           	global	_TRISC5
+    68  043D                     _TRISC5	set	1085
+    69                           	file	"program.as"
+    70                           	line	#
+    71                           psect cinit,class=CODE,delta=2
+    72                           global start_initialization
+    73  0713                     start_initialization:
+    74                           
+    75                           psect cinit,class=CODE,delta=2
+    76                           global end_of_initialization
+    77                           
+    78                           ;End of C runtime variable initialization code
+    79                           
+    80  0713                     end_of_initialization:
+    81  0713  0183               clrf status
+    82  0714  120A  118A  2F61   ljmp _main	;jump to C main() function
+    83                           psect	cstackCOMMON,class=COMMON,space=1
+    84                           global __pcstackCOMMON
+    85  0070                     __pcstackCOMMON:
+    86                           	global	?_MAX_INIT
+    87  0070                     ?_MAX_INIT:	; 0 bytes @ 0x0
+    88                           	global	?_SPI_WRITE
+    89  0070                     ?_SPI_WRITE:	; 0 bytes @ 0x0
+    90                           	global	?_main
+    91  0070                     ?_main:	; 0 bytes @ 0x0
+    92                           	global	SPI_WRITE@address
+    93  0070                     SPI_WRITE@address:	; 2 bytes @ 0x0
+    94  0070                     	ds	2
+    95                           	global	SPI_WRITE@data
+    96  0072                     SPI_WRITE@data:	; 2 bytes @ 0x2
+    97  0072                     	ds	2
+    98                           	global	??_MAX_INIT
+    99  0074                     ??_MAX_INIT:	; 0 bytes @ 0x4
+   100                           	global	??_SPI_WRITE
+   101  0074                     ??_SPI_WRITE:	; 0 bytes @ 0x4
+   102                           	global	??_main
+   103  0074                     ??_main:	; 0 bytes @ 0x4
+   104  0074                     	ds	3
+   105                           	global	main@i
+   106  0077                     main@i:	; 2 bytes @ 0x7
+   107  0077                     	ds	2
+   108                           	global	main@i_314
+   109  0079                     main@i_314:	; 2 bytes @ 0x9
+   110  0079                     	ds	2
+   111 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   112 ;;Auto spaces:   Size  Autos    Used
+   113 ;; COMMON          14     11      11
+   114 ;; BANK0           80      0       0
+   115 ;; BANK1           80      0       0
+   116 ;; BANK3           96      0       0
+   117 ;; BANK2           96      0       0
+   118                           
+   119 ;;
+   120 ;; Pointer list with targets:
+   121                           
+   122                           
+   123                           
+   124 ;;
+   125 ;; Critical Paths under _main in COMMON
+   126 ;;
+   127 ;;   _main->_SPI_WRITE
+   128 ;;   _MAX_INIT->_SPI_WRITE
+   129 ;;
+   130 ;; Critical Paths under _main in BANK0
+   131 ;;
+   132 ;;   None.
+   133 ;;
+   134 ;; Critical Paths under _main in BANK1
+   135 ;;
+   136 ;;   None.
+   137 ;;
+   138 ;; Critical Paths under _main in BANK3
+   139 ;;
+   140 ;;   None.
+   141 ;;
+   142 ;; Critical Paths under _main in BANK2
+   143 ;;
+   144 ;;   None.
+   145                           
+   146 ;;
+   147 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   148 ;;
+   149                           
+   150 ;;
+   151 ;;Call Graph Tables:
+   152 ;;
+   153 ;; ---------------------------------------------------------------------------------
+   154 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   155 ;; ---------------------------------------------------------------------------------
+   156 ;; (0) _main                                                 7     7      0     150
+   157 ;;                                              4 COMMON     7     7      0
+   158 ;;                           _MAX_INIT
+   159 ;;                          _SPI_WRITE
+   160 ;; ---------------------------------------------------------------------------------
+   161 ;; (1) _MAX_INIT                                             0     0      0      30
+   162 ;;                          _SPI_WRITE
+   163 ;; ---------------------------------------------------------------------------------
+   164 ;; (1) _SPI_WRITE                                            4     0      4      30
+   165 ;;                                              0 COMMON     4     0      4
+   166 ;; ---------------------------------------------------------------------------------
+   167 ;; Estimated maximum stack depth 1
+   168 ;; ---------------------------------------------------------------------------------
+   169                           
+   170 ;; Call Graph Graphs:
+   171                           
+   172 ;; _main (ROOT)
+   173 ;;   _MAX_INIT
+   174 ;;     _SPI_WRITE
+   175 ;;   _SPI_WRITE
+   176 ;;
+   177                           
+   178 ;; Address spaces:
+   179                           
+   180 ;;Name               Size   Autos  Total    Cost      Usage
+   181 ;;BITCOMMON            E      0       0       0        0.0%
+   182 ;;EEDATA             100      0       0       0        0.0%
+   183 ;;NULL                 0      0       0       0        0.0%
+   184 ;;CODE                 0      0       0       0        0.0%
+   185 ;;COMMON               E      B       B       1       78.6%
+   186 ;;BITSFR0              0      0       0       1        0.0%
+   187 ;;SFR0                 0      0       0       1        0.0%
+   188 ;;BITSFR1              0      0       0       2        0.0%
+   189 ;;SFR1                 0      0       0       2        0.0%
+   190 ;;STACK                0      0       2       2        0.0%
+   191 ;;ABS                  0      0       0       3        0.0%
+   192 ;;BITBANK0            50      0       0       4        0.0%
+   193 ;;BITSFR3              0      0       0       4        0.0%
+   194 ;;SFR3                 0      0       0       4        0.0%
+   195 ;;BANK0               50      0       0       5        0.0%
+   196 ;;BITSFR2              0      0       0       5        0.0%
+   197 ;;SFR2                 0      0       0       5        0.0%
+   198 ;;BITBANK1            50      0       0       6        0.0%
+   199 ;;BANK1               50      0       0       7        0.0%
+   200 ;;BITBANK3            60      0       0       8        0.0%
+   201 ;;BANK3               60      0       0       9        0.0%
+   202 ;;BITBANK2            60      0       0      10        0.0%
+   203 ;;BANK2               60      0       0      11        0.0%
+   204 ;;DATA                 0      0       0      12        0.0%
+   205                           
+   206                           	global	_main
+   207                           psect	maintext,global,class=CODE,delta=2
+   208                           global __pmaintext
+   209  0761                     __pmaintext:
+   210                           
+   211 ;; *************** function _main *****************
+   212 ;; Defined at:
+   213 ;;		line 5 in file "C:\PIC16F877A Demo Concepts\SPI using MAX7219(7 Seg CC)\program.c"
+   214 ;; Parameters:    Size  Location     Type
+   215 ;;		None
+   216 ;; Auto vars:     Size  Location     Type
+   217 ;;  i               2    9[COMMON] int 
+   218 ;;  i               2    7[COMMON] int 
+   219 ;; Return value:  Size  Location     Type
+   220 ;;		None               void
+   221 ;; Registers used:
+   222 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   223 ;; Tracked objects:
+   224 ;;		On entry : 17F/0
+   225 ;;		On exit  : 0/0
+   226 ;;		Unchanged: 0/0
+   227 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   228 ;;      Params:         0       0       0       0       0
+   229 ;;      Locals:         4       0       0       0       0
+   230 ;;      Temps:          3       0       0       0       0
+   231 ;;      Totals:         7       0       0       0       0
+   232 ;;Total ram usage:        7 bytes
+   233 ;; Hardware stack levels required when called:    2
+   234 ;; This function calls:
+   235 ;;		_MAX_INIT
+   236 ;;		_SPI_WRITE
+   237 ;; This function is called by:
+   238 ;;		Startup code after reset
+   239 ;; This function uses a non-reentrant model
+   240 ;;
+   241                           psect	maintext
+   242                           	file	"C:\PIC16F877A Demo Concepts\SPI using MAX7219(7 Seg CC)\program.c"
+   243                           	line	5
+   244                           	global	__size_of_main
+   245  009F                     	__size_of_main	equ	__end_of_main-_main
+   246                           	
+   247  0761                     _main:	
+   248                           	opt	stack 6
+   249                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   250                           	line	6
+   251                           	
+   252  0761                     l1747:	
+   253                           ;program.c: 6: SSPSTAT=0x00;
+   254  0761  1683               	bsf	status, 5	;RP0=1, select bank1
+   255  0762  1303               	bcf	status, 6	;RP1=0, select bank1
+   256  0763  0194               	clrf	(148)^080h	;volatile
+   257                           	line	7
+   258                           	
+   259  0764                     l1749:	
+   260                           ;program.c: 7: SSPCON=0b00100000;
+   261  0764  3020               	movlw	(020h)
+   262  0765  1283               	bcf	status, 5	;RP0=0, select bank0
+   263  0766  1303               	bcf	status, 6	;RP1=0, select bank0
+   264  0767  0094               	movwf	(20)	;volatile
+   265                           	line	8
+   266                           	
+   267  0768                     l1751:	
+   268                           ;program.c: 8: PORTC=0x00;
+   269  0768  0187               	clrf	(7)	;volatile
+   270                           	line	9
+   271                           	
+   272  0769                     l1753:	
+   273                           ;program.c: 9: TRISC5=0;
+   274  0769  1683               	bsf	status, 5	;RP0=1, select bank1
+   275  076A  1303               	bcf	status, 6	;RP1=0, select bank1
+   276  076B  1287               	bcf	(1085/8)^080h,(1085)&7
+   277                           	line	10
+   278                           	
+   279  076C                     l1755:	
+   280                           ;program.c: 10: TRISC4=1;
+   281  076C  1607               	bsf	(1084/8)^080h,(1084)&7
+   282                           	line	11
+   283                           	
+   284  076D                     l1757:	
+   285                           ;program.c: 11: TRISC3=0;
+   286  076D  1187               	bcf	(1083/8)^080h,(1083)&7
+   287                           	line	12
+   288                           	
+   289  076E                     l1759:	
+   290                           ;program.c: 12: TRISC2=0;
+   291  076E  1107               	bcf	(1082/8)^080h,(1082)&7
+   292                           	line	13
+   293                           	
+   294  076F                     l1761:	
+   295                           ;program.c: 13: MAX_INIT();
+   296  076F  120A  118A  272C   	fcall	_MAX_INIT
+              120A  118A         
+   297  0774  2F75               	goto	l1763
+   298                           	line	14
+   299                           ;program.c: 14: while(1){
+   300                           	
+   301  0775                     l565:	
+   302                           	line	15
+   303                           	
+   304  0775                     l1763:	
+   305                           ;program.c: 15: for(int i=0;i<=9;i++){
+   306  0775  3000               	movlw	low(0)
+   307  0776  00F7               	movwf	(main@i)
+   308  0777  3000               	movlw	high(0)
+   309  0778  00F8               	movwf	((main@i))+1
+   310                           	
+   311  0779                     l1765:	
+   312  0779  0878               	movf	(main@i+1),w
+   313  077A  3A80               	xorlw	80h
+   314  077B  00FF               	movwf	btemp+1
+   315  077C  3080               	movlw	(high(0Ah))^80h
+   316  077D  027F               	subwf	btemp+1,w
+   317  077E  1D03               	skipz
+   318  077F  2F82               	goto	u2165
+   319  0780  300A               	movlw	low(0Ah)
+   320  0781  0277               	subwf	(main@i),w
+   321  0782                     u2165:
+   322                           
+   323  0782  1C03               	skipc
+   324  0783  2F85               	goto	u2161
+   325  0784  2F86               	goto	u2160
+   326  0785                     u2161:
+   327  0785  2F88               	goto	l1769
+   328  0786                     u2160:
+   329  0786  2FB8               	goto	l1777
+   330                           	
+   331  0787                     l1767:	
+   332  0787  2FB8               	goto	l1777
+   333                           	
+   334  0788                     l566:	
+   335                           	line	16
+   336                           	
+   337  0788                     l1769:	
+   338                           ;program.c: 16: SPI_WRITE(0x01,i);
+   339  0788  3001               	movlw	low(01h)
+   340  0789  00F0               	movwf	(?_SPI_WRITE)
+   341  078A  3000               	movlw	high(01h)
+   342  078B  00F1               	movwf	((?_SPI_WRITE))+1
+   343  078C  0878               	movf	(main@i+1),w
+   344  078D  01F3               	clrf	1+(?_SPI_WRITE)+02h
+   345  078E  07F3               	addwf	1+(?_SPI_WRITE)+02h
+   346  078F  0877               	movf	(main@i),w
+   347  0790  01F2               	clrf	0+(?_SPI_WRITE)+02h
+   348  0791  07F2               	addwf	0+(?_SPI_WRITE)+02h
+   349                           
+   350  0792  120A  118A  2717   	fcall	_SPI_WRITE
+              120A  118A         
+   351                           	line	17
+   352                           	
+   353  0797                     l1771:	
+   354                           ;program.c: 17: _delay((unsigned long)((1000)*(10000000/4000.0)));}
+   355                           	opt asmopt_off
+   356  0797  300D               movlw  13
+   357  0798  00F6               movwf	((??_main+0)+0+2),f
+   358  0799  30A3               movlw	163
+   359  079A  00F5               movwf	((??_main+0)+0+1),f
+   360  079B  30BD               	movlw	189
+   361  079C  00F4               movwf	((??_main+0)+0),f
+   362  079D                     u2207:
+   363  079D  0BF4               	decfsz	((??_main+0)+0),f
+   364  079E  2F9D               	goto	u2207
+   365  079F  0BF5               	decfsz	((??_main+0)+0+1),f
+   366  07A0  2F9D               	goto	u2207
+   367  07A1  0BF6               	decfsz	((??_main+0)+0+2),f
+   368  07A2  2F9D               	goto	u2207
+   369  07A3  0064               	clrwdt
+   370                           opt asmopt_on
+   371                           
+   372                           	line	15
+   373                           	
+   374  07A4                     l1773:	
+   375  07A4  3001               	movlw	low(01h)
+   376  07A5  07F7               	addwf	(main@i),f
+   377  07A6  1803               	skipnc
+   378  07A7  0AF8               	incf	(main@i+1),f
+   379  07A8  3000               	movlw	high(01h)
+   380  07A9  07F8               	addwf	(main@i+1),f
+   381                           	
+   382  07AA                     l1775:	
+   383  07AA  0878               	movf	(main@i+1),w
+   384  07AB  3A80               	xorlw	80h
+   385  07AC  00FF               	movwf	btemp+1
+   386  07AD  3080               	movlw	(high(0Ah))^80h
+   387  07AE  027F               	subwf	btemp+1,w
+   388  07AF  1D03               	skipz
+   389  07B0  2FB3               	goto	u2175
+   390  07B1  300A               	movlw	low(0Ah)
+   391  07B2  0277               	subwf	(main@i),w
+   392  07B3                     u2175:
+   393                           
+   394  07B3  1C03               	skipc
+   395  07B4  2FB6               	goto	u2171
+   396  07B5  2FB7               	goto	u2170
+   397  07B6                     u2171:
+   398  07B6  2F88               	goto	l1769
+   399  07B7                     u2170:
+   400  07B7  2FB8               	goto	l1777
+   401                           	
+   402  07B8                     l567:	
+   403                           	line	18
+   404                           	
+   405  07B8                     l1777:	
+   406                           ;program.c: 18: for(int i=0;i<=9;i++){
+   407  07B8  3000               	movlw	low(0)
+   408  07B9  00F9               	movwf	(main@i_314)
+   409  07BA  3000               	movlw	high(0)
+   410  07BB  00FA               	movwf	((main@i_314))+1
+   411                           	
+   412  07BC                     l1779:	
+   413  07BC  087A               	movf	(main@i_314+1),w
+   414  07BD  3A80               	xorlw	80h
+   415  07BE  00FF               	movwf	btemp+1
+   416  07BF  3080               	movlw	(high(0Ah))^80h
+   417  07C0  027F               	subwf	btemp+1,w
+   418  07C1  1D03               	skipz
+   419  07C2  2FC5               	goto	u2185
+   420  07C3  300A               	movlw	low(0Ah)
+   421  07C4  0279               	subwf	(main@i_314),w
+   422  07C5                     u2185:
+   423                           
+   424  07C5  1C03               	skipc
+   425  07C6  2FC8               	goto	u2181
+   426  07C7  2FC9               	goto	u2180
+   427  07C8                     u2181:
+   428  07C8  2FCB               	goto	l1783
+   429  07C9                     u2180:
+   430  07C9  2F75               	goto	l1763
+   431                           	
+   432  07CA                     l1781:	
+   433  07CA  2F75               	goto	l1763
+   434                           	
+   435  07CB                     l568:	
+   436                           	line	19
+   437                           	
+   438  07CB                     l1783:	
+   439                           ;program.c: 19: SPI_WRITE(0x03,i);
+   440  07CB  3003               	movlw	low(03h)
+   441  07CC  00F0               	movwf	(?_SPI_WRITE)
+   442  07CD  3000               	movlw	high(03h)
+   443  07CE  00F1               	movwf	((?_SPI_WRITE))+1
+   444  07CF  087A               	movf	(main@i_314+1),w
+   445  07D0  01F3               	clrf	1+(?_SPI_WRITE)+02h
+   446  07D1  07F3               	addwf	1+(?_SPI_WRITE)+02h
+   447  07D2  0879               	movf	(main@i_314),w
+   448  07D3  01F2               	clrf	0+(?_SPI_WRITE)+02h
+   449  07D4  07F2               	addwf	0+(?_SPI_WRITE)+02h
+   450                           
+   451  07D5  120A  118A  2717   	fcall	_SPI_WRITE
+              120A  118A         
+   452                           	line	20
+   453                           	
+   454  07DA                     l1785:	
+   455                           ;program.c: 20: _delay((unsigned long)((1000)*(10000000/4000.0)));}}}
+   456                           	opt asmopt_off
+   457  07DA  300D               movlw  13
+   458  07DB  00F6               movwf	((??_main+0)+0+2),f
+   459  07DC  30A3               movlw	163
+   460  07DD  00F5               movwf	((??_main+0)+0+1),f
+   461  07DE  30BD               	movlw	189
+   462  07DF  00F4               movwf	((??_main+0)+0),f
+   463  07E0                     u2217:
+   464  07E0  0BF4               	decfsz	((??_main+0)+0),f
+   465  07E1  2FE0               	goto	u2217
+   466  07E2  0BF5               	decfsz	((??_main+0)+0+1),f
+   467  07E3  2FE0               	goto	u2217
+   468  07E4  0BF6               	decfsz	((??_main+0)+0+2),f
+   469  07E5  2FE0               	goto	u2217
+   470  07E6  0064               	clrwdt
+   471                           opt asmopt_on
+   472                           
+   473                           	line	18
+   474                           	
+   475  07E7                     l1787:	
+   476  07E7  3001               	movlw	low(01h)
+   477  07E8  07F9               	addwf	(main@i_314),f
+   478  07E9  1803               	skipnc
+   479  07EA  0AFA               	incf	(main@i_314+1),f
+   480  07EB  3000               	movlw	high(01h)
+   481  07EC  07FA               	addwf	(main@i_314+1),f
+   482                           	
+   483  07ED                     l1789:	
+   484  07ED  087A               	movf	(main@i_314+1),w
+   485  07EE  3A80               	xorlw	80h
+   486  07EF  00FF               	movwf	btemp+1
+   487  07F0  3080               	movlw	(high(0Ah))^80h
+   488  07F1  027F               	subwf	btemp+1,w
+   489  07F2  1D03               	skipz
+   490  07F3  2FF6               	goto	u2195
+   491  07F4  300A               	movlw	low(0Ah)
+   492  07F5  0279               	subwf	(main@i_314),w
+   493  07F6                     u2195:
+   494                           
+   495  07F6  1C03               	skipc
+   496  07F7  2FF9               	goto	u2191
+   497  07F8  2FFA               	goto	u2190
+   498  07F9                     u2191:
+   499  07F9  2FCB               	goto	l1783
+   500  07FA                     u2190:
+   501  07FA  2F75               	goto	l1763
+   502                           	
+   503  07FB                     l569:	
+   504  07FB  2F75               	goto	l1763
+   505                           	line	20
+   506                           	
+   507  07FC                     l570:	
+   508                           	line	14
+   509  07FC  2F75               	goto	l1763
+   510                           	
+   511  07FD                     l571:	
+   512                           	line	20
+   513                           	
+   514  07FD                     l572:	
+   515                           	global	start
+   516  07FD  120A  118A  2800   	ljmp	start
+   517                           	opt stack 0
+   518                           GLOBAL	__end_of_main
+   519  0800                     	__end_of_main:
+   520 ;; =============== function _main ends ============
+   521                           
+   522                           	signat	_main,88
+   523                           	global	_MAX_INIT
+   524                           psect	text67,local,class=CODE,delta=2
+   525                           global __ptext67
+   526  072C                     __ptext67:
+   527                           
+   528 ;; *************** function _MAX_INIT *****************
+   529 ;; Defined at:
+   530 ;;		line 22 in file "C:\PIC16F877A Demo Concepts\SPI using MAX7219(7 Seg CC)\program.c"
+   531 ;; Parameters:    Size  Location     Type
+   532 ;;		None
+   533 ;; Auto vars:     Size  Location     Type
+   534 ;;		None
+   535 ;; Return value:  Size  Location     Type
+   536 ;;		None               void
+   537 ;; Registers used:
+   538 ;;		wreg, status,2, status,0, pclath, cstack
+   539 ;; Tracked objects:
+   540 ;;		On entry : 0/0
+   541 ;;		On exit  : 0/0
+   542 ;;		Unchanged: 0/0
+   543 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   544 ;;      Params:         0       0       0       0       0
+   545 ;;      Locals:         0       0       0       0       0
+   546 ;;      Temps:          0       0       0       0       0
+   547 ;;      Totals:         0       0       0       0       0
+   548 ;;Total ram usage:        0 bytes
+   549 ;; Hardware stack levels used:    1
+   550 ;; Hardware stack levels required when called:    1
+   551 ;; This function calls:
+   552 ;;		_SPI_WRITE
+   553 ;; This function is called by:
+   554 ;;		_main
+   555 ;; This function uses a non-reentrant model
+   556 ;;
+   557                           psect	text67
+   558                           	file	"C:\PIC16F877A Demo Concepts\SPI using MAX7219(7 Seg CC)\program.c"
+   559                           	line	22
+   560                           	global	__size_of_MAX_INIT
+   561  0035                     	__size_of_MAX_INIT	equ	__end_of_MAX_INIT-_MAX_INIT
+   562                           	
+   563  072C                     _MAX_INIT:	
+   564                           	opt	stack 6
+   565                           ; Regs used in _MAX_INIT: [wreg+status,2+status,0+pclath+cstack]
+   566                           	line	23
+   567                           	
+   568  072C                     l1745:	
+   569                           ;program.c: 23: SPI_WRITE(0x09,0xFF);
+   570  072C  3009               	movlw	low(09h)
+   571  072D  00F0               	movwf	(?_SPI_WRITE)
+   572  072E  3000               	movlw	high(09h)
+   573  072F  00F1               	movwf	((?_SPI_WRITE))+1
+   574  0730  30FF               	movlw	low(0FFh)
+   575  0731  00F2               	movwf	0+(?_SPI_WRITE)+02h
+   576  0732  3000               	movlw	high(0FFh)
+   577  0733  00F3               	movwf	(0+(?_SPI_WRITE)+02h)+1
+   578  0734  120A  118A  2717   	fcall	_SPI_WRITE
+              120A  118A         
+   579                           	line	24
+   580                           ;program.c: 24: SPI_WRITE(0x0A,0xFF);
+   581  0739  300A               	movlw	low(0Ah)
+   582  073A  00F0               	movwf	(?_SPI_WRITE)
+   583  073B  3000               	movlw	high(0Ah)
+   584  073C  00F1               	movwf	((?_SPI_WRITE))+1
+   585  073D  30FF               	movlw	low(0FFh)
+   586  073E  00F2               	movwf	0+(?_SPI_WRITE)+02h
+   587  073F  3000               	movlw	high(0FFh)
+   588  0740  00F3               	movwf	(0+(?_SPI_WRITE)+02h)+1
+   589  0741  120A  118A  2717   	fcall	_SPI_WRITE
+              120A  118A         
+   590                           	line	25
+   591                           ;program.c: 25: SPI_WRITE(0x0B,0xFF);
+   592  0746  300B               	movlw	low(0Bh)
+   593  0747  00F0               	movwf	(?_SPI_WRITE)
+   594  0748  3000               	movlw	high(0Bh)
+   595  0749  00F1               	movwf	((?_SPI_WRITE))+1
+   596  074A  30FF               	movlw	low(0FFh)
+   597  074B  00F2               	movwf	0+(?_SPI_WRITE)+02h
+   598  074C  3000               	movlw	high(0FFh)
+   599  074D  00F3               	movwf	(0+(?_SPI_WRITE)+02h)+1
+   600  074E  120A  118A  2717   	fcall	_SPI_WRITE
+              120A  118A         
+   601                           	line	26
+   602                           ;program.c: 26: SPI_WRITE(0x0C,0xFF);}
+   603  0753  300C               	movlw	low(0Ch)
+   604  0754  00F0               	movwf	(?_SPI_WRITE)
+   605  0755  3000               	movlw	high(0Ch)
+   606  0756  00F1               	movwf	((?_SPI_WRITE))+1
+   607  0757  30FF               	movlw	low(0FFh)
+   608  0758  00F2               	movwf	0+(?_SPI_WRITE)+02h
+   609  0759  3000               	movlw	high(0FFh)
+   610  075A  00F3               	movwf	(0+(?_SPI_WRITE)+02h)+1
+   611  075B  120A  118A  2717   	fcall	_SPI_WRITE
+              120A  118A         
+   612                           	
+   613  0760                     l575:	
+   614  0760  0008               	return
+   615                           	opt stack 0
+   616                           GLOBAL	__end_of_MAX_INIT
+   617  0761                     	__end_of_MAX_INIT:
+   618 ;; =============== function _MAX_INIT ends ============
+   619                           
+   620                           	signat	_MAX_INIT,88
+   621                           	global	_SPI_WRITE
+   622                           psect	text68,local,class=CODE,delta=2
+   623                           global __ptext68
+   624  0717                     __ptext68:
+   625                           
+   626 ;; *************** function _SPI_WRITE *****************
+   627 ;; Defined at:
+   628 ;;		line 28 in file "C:\PIC16F877A Demo Concepts\SPI using MAX7219(7 Seg CC)\program.c"
+   629 ;; Parameters:    Size  Location     Type
+   630 ;;  address         2    0[COMMON] int 
+   631 ;;  data            2    2[COMMON] int 
+   632 ;; Auto vars:     Size  Location     Type
+   633 ;;		None
+   634 ;; Return value:  Size  Location     Type
+   635 ;;		None               void
+   636 ;; Registers used:
+   637 ;;		wreg
+   638 ;; Tracked objects:
+   639 ;;		On entry : 0/0
+   640 ;;		On exit  : 0/0
+   641 ;;		Unchanged: 0/0
+   642 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   643 ;;      Params:         4       0       0       0       0
+   644 ;;      Locals:         0       0       0       0       0
+   645 ;;      Temps:          0       0       0       0       0
+   646 ;;      Totals:         4       0       0       0       0
+   647 ;;Total ram usage:        4 bytes
+   648 ;; Hardware stack levels used:    1
+   649 ;; This function calls:
+   650 ;;		Nothing
+   651 ;; This function is called by:
+   652 ;;		_main
+   653 ;;		_MAX_INIT
+   654 ;; This function uses a non-reentrant model
+   655 ;;
+   656                           psect	text68
+   657                           	file	"C:\PIC16F877A Demo Concepts\SPI using MAX7219(7 Seg CC)\program.c"
+   658                           	line	28
+   659                           	global	__size_of_SPI_WRITE
+   660  0015                     	__size_of_SPI_WRITE	equ	__end_of_SPI_WRITE-_SPI_WRITE
+   661                           	
+   662  0717                     _SPI_WRITE:	
+   663                           	opt	stack 7
+   664                           ; Regs used in _SPI_WRITE: [wreg]
+   665                           	line	29
+   666                           	
+   667  0717                     l953:	
+   668                           ;program.c: 29: RC2=0;
+   669  0717  1283               	bcf	status, 5	;RP0=0, select bank0
+   670  0718  1303               	bcf	status, 6	;RP1=0, select bank0
+   671  0719  1107               	bcf	(58/8),(58)&7
+   672                           	line	30
+   673                           	
+   674  071A                     l955:	
+   675                           ;program.c: 30: SSPBUF=address;
+   676  071A  0870               	movf	(SPI_WRITE@address),w
+   677  071B  0093               	movwf	(19)	;volatile
+   678                           	line	31
+   679                           ;program.c: 31: while(SSPIF==0);
+   680  071C  2F1D               	goto	l578
+   681                           	
+   682  071D                     l579:	
+   683                           	
+   684  071D                     l578:	
+   685  071D  1D8C               	btfss	(99/8),(99)&7
+   686  071E  2F20               	goto	u11
+   687  071F  2F21               	goto	u10
+   688  0720                     u11:
+   689  0720  2F1D               	goto	l578
+   690  0721                     u10:
+   691                           	
+   692  0721                     l580:	
+   693                           	line	32
+   694                           ;program.c: 32: SSPIF=0;
+   695  0721  118C               	bcf	(99/8),(99)&7
+   696                           	line	33
+   697                           	
+   698  0722                     l957:	
+   699                           ;program.c: 33: SSPBUF=data;
+   700  0722  0872               	movf	(SPI_WRITE@data),w
+   701  0723  0093               	movwf	(19)	;volatile
+   702                           	line	34
+   703                           ;program.c: 34: while(SSPIF==0);
+   704  0724  2F25               	goto	l581
+   705                           	
+   706  0725                     l582:	
+   707                           	
+   708  0725                     l581:	
+   709  0725  1D8C               	btfss	(99/8),(99)&7
+   710  0726  2F28               	goto	u21
+   711  0727  2F29               	goto	u20
+   712  0728                     u21:
+   713  0728  2F25               	goto	l581
+   714  0729                     u20:
+   715                           	
+   716  0729                     l583:	
+   717                           	line	35
+   718                           ;program.c: 35: SSPIF=0;
+   719  0729  118C               	bcf	(99/8),(99)&7
+   720                           	line	36
+   721                           ;program.c: 36: RC2=1;}
+   722  072A  1507               	bsf	(58/8),(58)&7
+   723                           	
+   724  072B                     l584:	
+   725  072B  0008               	return
+   726                           	opt stack 0
+   727                           GLOBAL	__end_of_SPI_WRITE
+   728  072C                     	__end_of_SPI_WRITE:
+   729 ;; =============== function _SPI_WRITE ends ============
+   730                           
+   731                           	signat	_SPI_WRITE,8312
+   732                           psect	text69,local,class=CODE,delta=2
+   733                           global __ptext69
+   734  0000                     __ptext69:
+   735                           	global	btemp
+   736  007E                     	btemp set 07Eh
+   737                           
+   738                           	DABS	1,126,2	;btemp
+   739                           	global	wtemp0
+   740  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.80 build 6738 
+Symbol Table                                                                                   Sun Mar 23 10:52:44 2025
+
+                  u10 0721                    u11 0720                    u20 0729                    u21 0728  
+                 l570 07FC                   l571 07FD                   l580 0721                   l572 07FD  
+                 l581 0725                   l565 0775                   l582 0725                   l566 0788  
+                 l583 0729                   l575 0760                   l567 07B8                   l584 072B  
+                 l568 07CB                   l569 07FB                   l578 071D                   l579 071D  
+                 l953 0717                   l955 071A                   l957 0722                   _RC2 003A  
+                l1751 0768                  l1745 072C                  l1761 076F                  l1753 0769  
+                l1771 0797                  l1763 0775                  l1755 076C                  l1747 0761  
+                l1781 07CA                  l1773 07A4                  l1765 0779                  l1757 076D  
+                l1749 0764                  l1783 07CB                  l1775 07AA                  l1767 0787  
+                l1759 076E                  l1785 07DA                  l1777 07B8                  l1769 0788  
+                l1787 07E7                  l1779 07BC                  l1789 07ED                  u2207 079D  
+                u2160 0786                  u2217 07E0                  u2161 0785                  u2170 07B7  
+                u2171 07B6                  u2180 07C9                  u2181 07C8                  u2165 0782  
+                u2190 07FA                  u2191 07F9                  u2175 07B3                  u2185 07C5  
+                u2195 07F6                  _main 0761                  btemp 007E                  start 0000  
+    __end_of_MAX_INIT 0761                 ?_main 0070                 _PORTC 0007                 _SSPIF 0063  
+               main@i 0077    __size_of_SPI_WRITE 0015                 status 0003                 wtemp0 007E  
+        __end_of_main 0800      SPI_WRITE@address 0070         SPI_WRITE@data 0072                ??_main 0074  
+              _TRISC2 043A                _TRISC3 043B                _TRISC4 043C                _TRISC5 043D  
+              _SSPCON 0014                _SSPBUF 0013     __end_of_SPI_WRITE 072C             ?_MAX_INIT 0070  
+      __pcstackCOMMON 0070            ??_MAX_INIT 0074            __pmaintext 0761               _SSPSTAT 0094  
+end_of_initialization 0713             _SPI_WRITE 0717     __size_of_MAX_INIT 0035            ?_SPI_WRITE 0070  
+ start_initialization 0713           ??_SPI_WRITE 0074              _MAX_INIT 072C             main@i_314 0079  
+            __ptext66 0000              __ptext67 072C              __ptext68 0717              __ptext69 0000  
+       __size_of_main 009F  
