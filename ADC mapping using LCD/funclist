@@ -1,0 +1,27 @@
+___ftneg: CODE, 4544 0 12
+___awdiv: CODE, 5359 0 123
+_ADC: CODE, 2234 0 241
+_dat: CODE, 4556 0 19
+___ftpack: CODE, 5236 0 123
+_scale: CODE, 3393 0 703
+___awmod: CODE, 4912 0 106
+_main: CODE, 4748 0 70
+___ftadd: CODE, 2723 0 330
+___lltoft: CODE, 4694 0 54
+__div_to_l_: CODE, 3053 0 340
+___lldiv: CODE, 5126 0 110
+_sprintf: CODE, 468 0 1580
+_DC_ADC: CODE, 2475 0 248
+__tdiv_to_l_: CODE, 5680 0 226
+_fround: CODE, 41 0 427
+_cmd: CODE, 2048 0 20
+___ftmul: CODE, 5906 0 238
+___llmod: CODE, 4818 0 94
+___awtoft: CODE, 4650 0 44
+___wmul: CODE, 4606 0 44
+___fttol: CODE, 2068 0 166
+___ftsub: CODE, 10 0 31
+___ftge: CODE, 5018 0 108
+___bmul: CODE, 4575 0 31
+___ftdiv: CODE, 5482 0 198
+Total: 5686
