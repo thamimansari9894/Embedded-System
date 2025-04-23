@@ -1,0 +1,1113 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.80 build 6738 
+                                                                                               Sat Mar 29 14:29:03 2025
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 6738
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 6738"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_cmd
+    43                           	FNCALL	_main,_print
+    44                           	FNCALL	_main,_waiting
+    45                           	FNCALL	_main,_dis
+    46                           	FNCALL	_print,_dis
+    47                           	FNROOT	_main
+    48                           	global	_PORTB
+    49                           psect	text90,local,class=CODE,delta=2
+    50                           global __ptext90
+    51  0000                     __ptext90:
+    52  0006                     _PORTB	set	6
+    53                           	global	_PORTC
+    54  0007                     _PORTC	set	7
+    55                           	global	_PORTD
+    56  0008                     _PORTD	set	8
+    57                           	global	_RCREG
+    58  001A                     _RCREG	set	26
+    59                           	global	_RCSTA
+    60  0018                     _RCSTA	set	24
+    61                           	global	_RC0
+    62  0038                     _RC0	set	56
+    63                           	global	_RC1
+    64  0039                     _RC1	set	57
+    65                           	global	_RC2
+    66  003A                     _RC2	set	58
+    67                           	global	_RCIF
+    68  0065                     _RCIF	set	101
+    69                           	global	_RD0
+    70  0040                     _RD0	set	64
+    71                           	global	_RD1
+    72  0041                     _RD1	set	65
+    73                           	global	_SPBRG
+    74  0099                     _SPBRG	set	153
+    75                           	global	_TRISB
+    76  0086                     _TRISB	set	134
+    77                           	global	_TRISC
+    78  0087                     _TRISC	set	135
+    79                           	global	_TRISD
+    80  0088                     _TRISD	set	136
+    81                           	global	_TXSTA
+    82  0098                     _TXSTA	set	152
+    83                           	global	_RW
+    84  04A2                     _RW	set	1186
+    85                           psect	strings,class=STRING,delta=2
+    86                           global __pstrings
+    87  0003                     __pstrings:
+    88                           ;	global	stringdir,stringtab,__stringbase
+    89  0003                     stringtab:
+    90                           ;	String table - string pointers are 1 byte each
+    91  0003                     stringcode:stringdir:
+      + 0003                     stringdir:	
+    92  0003  3000               movlw high(stringdir)
+    93  0004  008A               movwf pclath
+    94  0005  0804               movf fsr,w
+    95  0006  0A84               incf fsr
+    96  0007  0782               	addwf pc
+    97  0008                     __stringbase:
+    98  0008  3400               	retlw	0
+    99                           psect	strings
+   100                           	
+   101  0009                     STR_1:	
+   102  0009  3443               	retlw	67	;'C'
+   103  000A  3448               	retlw	72	;'H'
+   104  000B  3449               	retlw	73	;'I'
+   105  000C  3450               	retlw	80	;'P'
+   106  000D  3420               	retlw	32	;' '
+   107  000E  3431               	retlw	49	;'1'
+   108  000F  3420               	retlw	32	;' '
+   109  0010  3452               	retlw	82	;'R'
+   110  0011  3458               	retlw	88	;'X'
+   111  0012  3400               	retlw	0
+   112                           psect	strings
+   113                           	
+   114  0013                     STR_2:	
+   115  0013  3452               	retlw	82	;'R'
+   116  0014  3445               	retlw	69	;'E'
+   117  0015  3443               	retlw	67	;'C'
+   118  0016  3449               	retlw	73	;'I'
+   119  0017  3456               	retlw	86	;'V'
+   120  0018  3445               	retlw	69	;'E'
+   121  0019  3444               	retlw	68	;'D'
+   122  001A  3400               	retlw	0
+   123                           psect	strings
+   124                           	file	"program.as"
+   125                           	line	#
+   126                           psect cinit,class=CODE,delta=2
+   127                           global start_initialization
+   128  06D2                     start_initialization:
+   129                           
+   130                           psect cinit,class=CODE,delta=2
+   131                           global end_of_initialization
+   132                           
+   133                           ;End of C runtime variable initialization code
+   134                           
+   135  06D2                     end_of_initialization:
+   136  06D2  0183               clrf status
+   137  06D3  120A  118A  2F49   ljmp _main	;jump to C main() function
+   138                           psect	cstackCOMMON,class=COMMON,space=1
+   139                           global __pcstackCOMMON
+   140  0070                     __pcstackCOMMON:
+   141                           	global	?_cmd
+   142  0070                     ?_cmd:	; 0 bytes @ 0x0
+   143                           	global	??_cmd
+   144  0070                     ??_cmd:	; 0 bytes @ 0x0
+   145                           	global	?_waiting
+   146  0070                     ?_waiting:	; 0 bytes @ 0x0
+   147                           	global	??_waiting
+   148  0070                     ??_waiting:	; 0 bytes @ 0x0
+   149                           	global	?_dis
+   150  0070                     ?_dis:	; 0 bytes @ 0x0
+   151                           	global	?_main
+   152  0070                     ?_main:	; 0 bytes @ 0x0
+   153                           	global	waiting@data
+   154  0070                     waiting@data:	; 1 bytes @ 0x0
+   155                           	global	dis@dat
+   156  0070                     dis@dat:	; 2 bytes @ 0x0
+   157  0070                     	ds	2
+   158                           	global	??_dis
+   159  0072                     ??_dis:	; 0 bytes @ 0x2
+   160                           	global	cmd@a
+   161  0072                     cmd@a:	; 1 bytes @ 0x2
+   162  0072                     	ds	2
+   163                           	global	?_print
+   164  0074                     ?_print:	; 0 bytes @ 0x4
+   165                           	global	print@a
+   166  0074                     print@a:	; 2 bytes @ 0x4
+   167  0074                     	ds	2
+   168                           	global	??_print
+   169  0076                     ??_print:	; 0 bytes @ 0x6
+   170  0076                     	ds	2
+   171                           	global	print@name
+   172  0078                     print@name:	; 1 bytes @ 0x8
+   173  0078                     	ds	1
+   174                           	global	print@i
+   175  0079                     print@i:	; 2 bytes @ 0x9
+   176  0079                     	ds	2
+   177                           	global	??_main
+   178  007B                     ??_main:	; 0 bytes @ 0xB
+   179  007B                     	ds	3
+   180 ;;Data sizes: Strings 18, constant 0, data 0, bss 0, persistent 0 stack 0
+   181 ;;Auto spaces:   Size  Autos    Used
+   182 ;; COMMON          14     14      14
+   183 ;; BANK0           80      0       0
+   184 ;; BANK1           80      0       0
+   185 ;; BANK3           96      0       0
+   186 ;; BANK2           96      0       0
+   187                           
+   188 ;;
+   189 ;; Pointer list with targets:
+   190                           
+   191 ;; print@name	PTR unsigned char  size(1) Largest target is 10
+   192 ;;		 -> STR_2(CODE[8]), STR_1(CODE[10]), 
+   193 ;;
+   194                           
+   195                           
+   196 ;;
+   197 ;; Critical Paths under _main in COMMON
+   198 ;;
+   199 ;;   _main->_print
+   200 ;;   _print->_dis
+   201 ;;
+   202 ;; Critical Paths under _main in BANK0
+   203 ;;
+   204 ;;   None.
+   205 ;;
+   206 ;; Critical Paths under _main in BANK1
+   207 ;;
+   208 ;;   None.
+   209 ;;
+   210 ;; Critical Paths under _main in BANK3
+   211 ;;
+   212 ;;   None.
+   213 ;;
+   214 ;; Critical Paths under _main in BANK2
+   215 ;;
+   216 ;;   None.
+   217                           
+   218 ;;
+   219 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   220 ;;
+   221                           
+   222 ;;
+   223 ;;Call Graph Tables:
+   224 ;;
+   225 ;; ---------------------------------------------------------------------------------
+   226 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   227 ;; ---------------------------------------------------------------------------------
+   228 ;; (0) _main                                                 3     3      0     120
+   229 ;;                                             11 COMMON     3     3      0
+   230 ;;                                _cmd
+   231 ;;                              _print
+   232 ;;                            _waiting
+   233 ;;                                _dis
+   234 ;; ---------------------------------------------------------------------------------
+   235 ;; (1) _print                                                7     5      2      75
+   236 ;;                                              4 COMMON     7     5      2
+   237 ;;                                _dis
+   238 ;; ---------------------------------------------------------------------------------
+   239 ;; (1) _dis                                                  4     2      2      15
+   240 ;;                                              0 COMMON     4     2      2
+   241 ;; ---------------------------------------------------------------------------------
+   242 ;; (1) _cmd                                                  3     3      0      15
+   243 ;;                                              0 COMMON     3     3      0
+   244 ;; ---------------------------------------------------------------------------------
+   245 ;; (1) _waiting                                              1     1      0      15
+   246 ;;                                              0 COMMON     1     1      0
+   247 ;; ---------------------------------------------------------------------------------
+   248 ;; Estimated maximum stack depth 1
+   249 ;; ---------------------------------------------------------------------------------
+   250                           
+   251 ;; Call Graph Graphs:
+   252                           
+   253 ;; _main (ROOT)
+   254 ;;   _cmd
+   255 ;;   _print
+   256 ;;     _dis
+   257 ;;   _waiting
+   258 ;;   _dis
+   259 ;;
+   260                           
+   261 ;; Address spaces:
+   262                           
+   263 ;;Name               Size   Autos  Total    Cost      Usage
+   264 ;;BITCOMMON            E      0       0       0        0.0%
+   265 ;;EEDATA             100      0       0       0        0.0%
+   266 ;;NULL                 0      0       0       0        0.0%
+   267 ;;CODE                 0      0       0       0        0.0%
+   268 ;;COMMON               E      E       E       1      100.0%
+   269 ;;BITSFR0              0      0       0       1        0.0%
+   270 ;;SFR0                 0      0       0       1        0.0%
+   271 ;;BITSFR1              0      0       0       2        0.0%
+   272 ;;SFR1                 0      0       0       2        0.0%
+   273 ;;STACK                0      0       2       2        0.0%
+   274 ;;ABS                  0      0       0       3        0.0%
+   275 ;;BITBANK0            50      0       0       4        0.0%
+   276 ;;BITSFR3              0      0       0       4        0.0%
+   277 ;;SFR3                 0      0       0       4        0.0%
+   278 ;;BANK0               50      0       0       5        0.0%
+   279 ;;BITSFR2              0      0       0       5        0.0%
+   280 ;;SFR2                 0      0       0       5        0.0%
+   281 ;;BITBANK1            50      0       0       6        0.0%
+   282 ;;BANK1               50      0       0       7        0.0%
+   283 ;;BITBANK3            60      0       0       8        0.0%
+   284 ;;BANK3               60      0       0       9        0.0%
+   285 ;;BITBANK2            60      0       0      10        0.0%
+   286 ;;BANK2               60      0       0      11        0.0%
+   287 ;;DATA                 0      0       0      12        0.0%
+   288                           
+   289                           	global	_main
+   290                           psect	maintext,global,class=CODE,delta=2
+   291                           global __pmaintext
+   292  0749                     __pmaintext:
+   293                           
+   294 ;; *************** function _main *****************
+   295 ;; Defined at:
+   296 ;;		line 11 in file "C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   297 ;; Parameters:    Size  Location     Type
+   298 ;;		None
+   299 ;; Auto vars:     Size  Location     Type
+   300 ;;		None
+   301 ;; Return value:  Size  Location     Type
+   302 ;;		None               void
+   303 ;; Registers used:
+   304 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   305 ;; Tracked objects:
+   306 ;;		On entry : 17F/0
+   307 ;;		On exit  : 0/0
+   308 ;;		Unchanged: 0/0
+   309 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   310 ;;      Params:         0       0       0       0       0
+   311 ;;      Locals:         0       0       0       0       0
+   312 ;;      Temps:          3       0       0       0       0
+   313 ;;      Totals:         3       0       0       0       0
+   314 ;;Total ram usage:        3 bytes
+   315 ;; Hardware stack levels required when called:    2
+   316 ;; This function calls:
+   317 ;;		_cmd
+   318 ;;		_print
+   319 ;;		_waiting
+   320 ;;		_dis
+   321 ;; This function is called by:
+   322 ;;		Startup code after reset
+   323 ;; This function uses a non-reentrant model
+   324 ;;
+   325                           psect	maintext
+   326                           	file	"C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   327                           	line	11
+   328                           	global	__size_of_main
+   329  00B7                     	__size_of_main	equ	__end_of_main-_main
+   330                           	
+   331  0749                     _main:	
+   332                           	opt	stack 6
+   333                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   334                           	line	12
+   335                           	
+   336  0749                     l1784:	
+   337                           ;program.c: 12: TRISC=0x80;
+   338  0749  3080               	movlw	(080h)
+   339  074A  1683               	bsf	status, 5	;RP0=1, select bank1
+   340  074B  1303               	bcf	status, 6	;RP1=0, select bank1
+   341  074C  0087               	movwf	(135)^080h	;volatile
+   342                           	line	13
+   343                           	
+   344  074D                     l1786:	
+   345                           ;program.c: 13: PORTC=0x00;
+   346  074D  1283               	bcf	status, 5	;RP0=0, select bank0
+   347  074E  1303               	bcf	status, 6	;RP1=0, select bank0
+   348  074F  0187               	clrf	(7)	;volatile
+   349                           	line	14
+   350                           	
+   351  0750                     l1788:	
+   352                           ;program.c: 14: TRISB=0x00;
+   353  0750  1683               	bsf	status, 5	;RP0=1, select bank1
+   354  0751  1303               	bcf	status, 6	;RP1=0, select bank1
+   355  0752  0186               	clrf	(134)^080h	;volatile
+   356                           	line	15
+   357                           	
+   358  0753                     l1790:	
+   359                           ;program.c: 15: PORTB=0x00;
+   360  0753  1283               	bcf	status, 5	;RP0=0, select bank0
+   361  0754  1303               	bcf	status, 6	;RP1=0, select bank0
+   362  0755  0186               	clrf	(6)	;volatile
+   363                           	line	16
+   364                           	
+   365  0756                     l1792:	
+   366                           ;program.c: 16: TRISD=0x00;
+   367  0756  1683               	bsf	status, 5	;RP0=1, select bank1
+   368  0757  1303               	bcf	status, 6	;RP1=0, select bank1
+   369  0758  0188               	clrf	(136)^080h	;volatile
+   370                           	line	17
+   371                           	
+   372  0759                     l1794:	
+   373                           ;program.c: 17: PORTD=0x00;
+   374  0759  1283               	bcf	status, 5	;RP0=0, select bank0
+   375  075A  1303               	bcf	status, 6	;RP1=0, select bank0
+   376  075B  0188               	clrf	(8)	;volatile
+   377                           	line	18
+   378                           	
+   379  075C                     l1796:	
+   380                           ;program.c: 18: cmd(0x38);
+   381  075C  3038               	movlw	(038h)
+   382  075D  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   383                           	line	19
+   384                           	
+   385  0762                     l1798:	
+   386                           ;program.c: 19: cmd(0x0C);
+   387  0762  300C               	movlw	(0Ch)
+   388  0763  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   389                           	line	20
+   390                           	
+   391  0768                     l1800:	
+   392                           ;program.c: 20: cmd(0x10);
+   393  0768  3010               	movlw	(010h)
+   394  0769  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   395                           	line	21
+   396                           	
+   397  076E                     l1802:	
+   398                           ;program.c: 21: cmd(0x06);
+   399  076E  3006               	movlw	(06h)
+   400  076F  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   401                           	line	22
+   402                           	
+   403  0774                     l1804:	
+   404                           ;program.c: 22: cmd(0x80);
+   405  0774  3080               	movlw	(080h)
+   406  0775  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   407                           	line	23
+   408                           	
+   409  077A                     l1806:	
+   410                           ;program.c: 23: cmd(0xC0);
+   411  077A  30C0               	movlw	(0C0h)
+   412  077B  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   413                           	line	24
+   414                           	
+   415  0780                     l1808:	
+   416                           ;program.c: 24: RD0=1;
+   417  0780  1283               	bcf	status, 5	;RP0=0, select bank0
+   418  0781  1303               	bcf	status, 6	;RP1=0, select bank0
+   419  0782  1408               	bsf	(64/8),(64)&7
+   420                           	line	25
+   421                           	
+   422  0783                     l1810:	
+   423                           ;program.c: 25: RD1=1;
+   424  0783  1488               	bsf	(65/8),(65)&7
+   425                           	line	26
+   426                           	
+   427  0784                     l1812:	
+   428                           ;program.c: 26: TXSTA=0x24;
+   429  0784  3024               	movlw	(024h)
+   430  0785  1683               	bsf	status, 5	;RP0=1, select bank1
+   431  0786  1303               	bcf	status, 6	;RP1=0, select bank1
+   432  0787  0098               	movwf	(152)^080h	;volatile
+   433                           	line	27
+   434                           	
+   435  0788                     l1814:	
+   436                           ;program.c: 27: RCSTA=0x90;
+   437  0788  3090               	movlw	(090h)
+   438  0789  1283               	bcf	status, 5	;RP0=0, select bank0
+   439  078A  1303               	bcf	status, 6	;RP1=0, select bank0
+   440  078B  0098               	movwf	(24)	;volatile
+   441                           	line	28
+   442                           	
+   443  078C                     l1816:	
+   444                           ;program.c: 28: SPBRG=64;
+   445  078C  3040               	movlw	(040h)
+   446  078D  1683               	bsf	status, 5	;RP0=1, select bank1
+   447  078E  1303               	bcf	status, 6	;RP1=0, select bank1
+   448  078F  0099               	movwf	(153)^080h	;volatile
+   449  0790  2F91               	goto	l1818
+   450                           	line	29
+   451                           ;program.c: 29: while(1){
+   452                           	
+   453  0791                     l569:	
+   454                           	line	30
+   455                           	
+   456  0791                     l1818:	
+   457                           ;program.c: 30: RC2=0;
+   458  0791  1283               	bcf	status, 5	;RP0=0, select bank0
+   459  0792  1303               	bcf	status, 6	;RP1=0, select bank0
+   460  0793  1107               	bcf	(58/8),(58)&7
+   461                           	line	31
+   462                           	
+   463  0794                     l1820:	
+   464                           ;program.c: 31: print("CHIP 1 RX",9);
+   465  0794  3009               	movlw	low(09h)
+   466  0795  00F4               	movwf	(?_print)
+   467  0796  3000               	movlw	high(09h)
+   468  0797  00F5               	movwf	((?_print))+1
+   469  0798  3001               	movlw	((STR_1-__stringbase))&0ffh
+   470  0799  120A  118A  2719   	fcall	_print
+              120A  118A         
+   471                           	line	32
+   472                           	
+   473  079E                     l1822:	
+   474                           ;program.c: 32: cmd(0x80);
+   475  079E  3080               	movlw	(080h)
+   476  079F  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   477                           	line	33
+   478                           	
+   479  07A4                     l1824:	
+   480                           ;program.c: 33: _delay((unsigned long)((3000)*(10000000/4000.0)));
+   481                           	opt asmopt_off
+   482  07A4  3026               movlw  38
+   483  07A5  00FD               movwf	((??_main+0)+0+2),f
+   484  07A6  30E8               movlw	232
+   485  07A7  00FC               movwf	((??_main+0)+0+1),f
+   486  07A8  303E               	movlw	62
+   487  07A9  00FB               movwf	((??_main+0)+0),f
+   488  07AA                     u2187:
+   489  07AA  0BFB               	decfsz	((??_main+0)+0),f
+   490  07AB  2FAA               	goto	u2187
+   491  07AC  0BFC               	decfsz	((??_main+0)+0+1),f
+   492  07AD  2FAA               	goto	u2187
+   493  07AE  0BFD               	decfsz	((??_main+0)+0+2),f
+   494  07AF  2FAA               	goto	u2187
+   495  07B0  2FB1               	nop2
+   496                           opt asmopt_on
+   497                           
+   498                           	line	34
+   499                           	
+   500  07B1                     l1826:	
+   501                           ;program.c: 34: cmd(0x01);
+   502  07B1  3001               	movlw	(01h)
+   503  07B2  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   504                           	line	35
+   505                           	
+   506  07B7                     l1828:	
+   507                           ;program.c: 35: waiting('1');
+   508  07B7  3031               	movlw	(031h)
+   509  07B8  120A  118A  26D6   	fcall	_waiting
+              120A  118A         
+   510                           	line	36
+   511                           	
+   512  07BD                     l1830:	
+   513                           ;program.c: 36: RC2=1;
+   514  07BD  1283               	bcf	status, 5	;RP0=0, select bank0
+   515  07BE  1303               	bcf	status, 6	;RP1=0, select bank0
+   516  07BF  1507               	bsf	(58/8),(58)&7
+   517                           	line	37
+   518                           ;program.c: 37: while(RCIF==0);
+   519  07C0  2FC1               	goto	l570
+   520                           	
+   521  07C1                     l571:	
+   522                           	
+   523  07C1                     l570:	
+   524  07C1  1E8C               	btfss	(101/8),(101)&7
+   525  07C2  2FC4               	goto	u2171
+   526  07C3  2FC5               	goto	u2170
+   527  07C4                     u2171:
+   528  07C4  2FC1               	goto	l570
+   529  07C5                     u2170:
+   530                           	
+   531  07C5                     l572:	
+   532                           	line	38
+   533                           ;program.c: 38: RCIF=0;
+   534  07C5  128C               	bcf	(101/8),(101)&7
+   535                           	line	39
+   536                           	
+   537  07C6                     l1832:	
+   538                           ;program.c: 39: dis(RCREG);
+   539  07C6  081A               	movf	(26),w	;volatile
+   540  07C7  00FB               	movwf	(??_main+0)+0
+   541  07C8  01FC               	clrf	(??_main+0)+0+1
+   542  07C9  087B               	movf	0+(??_main+0)+0,w
+   543  07CA  00F0               	movwf	(?_dis)
+   544  07CB  087C               	movf	1+(??_main+0)+0,w
+   545  07CC  00F1               	movwf	(?_dis+1)
+   546  07CD  120A  118A  26EA   	fcall	_dis
+              120A  118A         
+   547                           	line	40
+   548                           ;program.c: 40: cmd(0x01);
+   549  07D2  3001               	movlw	(01h)
+   550  07D3  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   551                           	line	41
+   552                           	
+   553  07D8                     l1834:	
+   554                           ;program.c: 41: print("RECIVED",7);
+   555  07D8  3007               	movlw	low(07h)
+   556  07D9  00F4               	movwf	(?_print)
+   557  07DA  3000               	movlw	high(07h)
+   558  07DB  00F5               	movwf	((?_print))+1
+   559  07DC  300B               	movlw	((STR_2-__stringbase))&0ffh
+   560  07DD  120A  118A  2719   	fcall	_print
+              120A  118A         
+   561                           	line	42
+   562                           	
+   563  07E2                     l1836:	
+   564                           ;program.c: 42: cmd(0x80);
+   565  07E2  3080               	movlw	(080h)
+   566  07E3  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   567                           	line	43
+   568                           	
+   569  07E8                     l1838:	
+   570                           ;program.c: 43: _delay((unsigned long)((3000)*(10000000/4000.0)));
+   571                           	opt asmopt_off
+   572  07E8  3026               movlw  38
+   573  07E9  00FD               movwf	((??_main+0)+0+2),f
+   574  07EA  30E8               movlw	232
+   575  07EB  00FC               movwf	((??_main+0)+0+1),f
+   576  07EC  303E               	movlw	62
+   577  07ED  00FB               movwf	((??_main+0)+0),f
+   578  07EE                     u2197:
+   579  07EE  0BFB               	decfsz	((??_main+0)+0),f
+   580  07EF  2FEE               	goto	u2197
+   581  07F0  0BFC               	decfsz	((??_main+0)+0+1),f
+   582  07F1  2FEE               	goto	u2197
+   583  07F2  0BFD               	decfsz	((??_main+0)+0+2),f
+   584  07F3  2FEE               	goto	u2197
+   585  07F4  2FF5               	nop2
+   586                           opt asmopt_on
+   587                           
+   588                           	line	44
+   589                           	
+   590  07F5                     l1840:	
+   591                           ;program.c: 44: cmd(0x01);}}
+   592  07F5  3001               	movlw	(01h)
+   593  07F6  120A  118A  2701   	fcall	_cmd
+              120A  118A         
+   594  07FB  2F91               	goto	l1818
+   595                           	
+   596  07FC                     l573:	
+   597                           	line	29
+   598  07FC  2F91               	goto	l1818
+   599                           	
+   600  07FD                     l574:	
+   601                           	line	44
+   602                           	
+   603  07FD                     l575:	
+   604                           	global	start
+   605  07FD  120A  118A  2800   	ljmp	start
+   606                           	opt stack 0
+   607                           GLOBAL	__end_of_main
+   608  0800                     	__end_of_main:
+   609 ;; =============== function _main ends ============
+   610                           
+   611                           	signat	_main,88
+   612                           	global	_print
+   613                           psect	text91,local,class=CODE,delta=2
+   614                           global __ptext91
+   615  0719                     __ptext91:
+   616                           
+   617 ;; *************** function _print *****************
+   618 ;; Defined at:
+   619 ;;		line 62 in file "C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   620 ;; Parameters:    Size  Location     Type
+   621 ;;  name            1    wreg     PTR unsigned char 
+   622 ;;		 -> STR_2(8), STR_1(10), 
+   623 ;;  a               2    4[COMMON] int 
+   624 ;; Auto vars:     Size  Location     Type
+   625 ;;  name            1    8[COMMON] PTR unsigned char 
+   626 ;;		 -> STR_2(8), STR_1(10), 
+   627 ;;  i               2    9[COMMON] int 
+   628 ;; Return value:  Size  Location     Type
+   629 ;;		None               void
+   630 ;; Registers used:
+   631 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   632 ;; Tracked objects:
+   633 ;;		On entry : 0/0
+   634 ;;		On exit  : 0/0
+   635 ;;		Unchanged: 0/0
+   636 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   637 ;;      Params:         2       0       0       0       0
+   638 ;;      Locals:         3       0       0       0       0
+   639 ;;      Temps:          2       0       0       0       0
+   640 ;;      Totals:         7       0       0       0       0
+   641 ;;Total ram usage:        7 bytes
+   642 ;; Hardware stack levels used:    1
+   643 ;; Hardware stack levels required when called:    1
+   644 ;; This function calls:
+   645 ;;		_dis
+   646 ;; This function is called by:
+   647 ;;		_main
+   648 ;; This function uses a non-reentrant model
+   649 ;;
+   650                           psect	text91
+   651                           	file	"C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   652                           	line	62
+   653                           	global	__size_of_print
+   654  0030                     	__size_of_print	equ	__end_of_print-_print
+   655                           	
+   656  0719                     _print:	
+   657                           	opt	stack 6
+   658                           ; Regs used in _print: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   659                           ;print@name stored from wreg
+   660                           	line	64
+   661  0719  00F8               	movwf	(print@name)
+   662                           	
+   663  071A                     l1776:	
+   664                           ;program.c: 63: int i;
+   665                           ;program.c: 64: for (i=0;i<a;i++){
+   666  071A  3000               	movlw	low(0)
+   667  071B  00F9               	movwf	(print@i)
+   668  071C  3000               	movlw	high(0)
+   669  071D  00FA               	movwf	((print@i))+1
+   670  071E  2F39               	goto	l1782
+   671                           	
+   672  071F                     l585:	
+   673                           	line	65
+   674                           	
+   675  071F                     l1778:	
+   676                           ;program.c: 65: dis(name[i]);}}
+   677  071F  0879               	movf	(print@i),w
+   678  0720  0778               	addwf	(print@name),w
+   679  0721  0084               	movwf	fsr0
+   680  0722  120A  118A  2003   	fcall	stringdir
+              120A  118A         
+   681  0727  00F6               	movwf	(??_print+0)+0
+   682  0728  01F7               	clrf	(??_print+0)+0+1
+   683  0729  0876               	movf	0+(??_print+0)+0,w
+   684  072A  00F0               	movwf	(?_dis)
+   685  072B  0877               	movf	1+(??_print+0)+0,w
+   686  072C  00F1               	movwf	(?_dis+1)
+   687  072D  120A  118A  26EA   	fcall	_dis
+              120A  118A         
+   688                           	line	64
+   689                           	
+   690  0732                     l1780:	
+   691  0732  3001               	movlw	low(01h)
+   692  0733  07F9               	addwf	(print@i),f
+   693  0734  1803               	skipnc
+   694  0735  0AFA               	incf	(print@i+1),f
+   695  0736  3000               	movlw	high(01h)
+   696  0737  07FA               	addwf	(print@i+1),f
+   697  0738  2F39               	goto	l1782
+   698                           	
+   699  0739                     l584:	
+   700                           	
+   701  0739                     l1782:	
+   702  0739  087A               	movf	(print@i+1),w
+   703  073A  3A80               	xorlw	80h
+   704  073B  00F6               	movwf	(??_print+0)+0
+   705  073C  0875               	movf	(print@a+1),w
+   706  073D  3A80               	xorlw	80h
+   707  073E  0276               	subwf	(??_print+0)+0,w
+   708  073F  1D03               	skipz
+   709  0740  2F43               	goto	u2165
+   710  0741  0874               	movf	(print@a),w
+   711  0742  0279               	subwf	(print@i),w
+   712  0743                     u2165:
+   713                           
+   714  0743  1C03               	skipc
+   715  0744  2F46               	goto	u2161
+   716  0745  2F47               	goto	u2160
+   717  0746                     u2161:
+   718  0746  2F1F               	goto	l1778
+   719  0747                     u2160:
+   720  0747  2F48               	goto	l587
+   721                           	
+   722  0748                     l586:	
+   723                           	line	65
+   724                           	
+   725  0748                     l587:	
+   726  0748  0008               	return
+   727                           	opt stack 0
+   728                           GLOBAL	__end_of_print
+   729  0749                     	__end_of_print:
+   730 ;; =============== function _print ends ============
+   731                           
+   732                           	signat	_print,8312
+   733                           	global	_dis
+   734                           psect	text92,local,class=CODE,delta=2
+   735                           global __ptext92
+   736  06EA                     __ptext92:
+   737                           
+   738 ;; *************** function _dis *****************
+   739 ;; Defined at:
+   740 ;;		line 54 in file "C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   741 ;; Parameters:    Size  Location     Type
+   742 ;;  dat             2    0[COMMON] int 
+   743 ;; Auto vars:     Size  Location     Type
+   744 ;;		None
+   745 ;; Return value:  Size  Location     Type
+   746 ;;		None               void
+   747 ;; Registers used:
+   748 ;;		wreg
+   749 ;; Tracked objects:
+   750 ;;		On entry : 0/0
+   751 ;;		On exit  : 0/0
+   752 ;;		Unchanged: 0/0
+   753 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   754 ;;      Params:         2       0       0       0       0
+   755 ;;      Locals:         0       0       0       0       0
+   756 ;;      Temps:          2       0       0       0       0
+   757 ;;      Totals:         4       0       0       0       0
+   758 ;;Total ram usage:        4 bytes
+   759 ;; Hardware stack levels used:    1
+   760 ;; This function calls:
+   761 ;;		Nothing
+   762 ;; This function is called by:
+   763 ;;		_main
+   764 ;;		_print
+   765 ;; This function uses a non-reentrant model
+   766 ;;
+   767                           psect	text92
+   768                           	file	"C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   769                           	line	54
+   770                           	global	__size_of_dis
+   771  0017                     	__size_of_dis	equ	__end_of_dis-_dis
+   772                           	
+   773  06EA                     _dis:	
+   774                           	opt	stack 7
+   775                           ; Regs used in _dis: [wreg]
+   776                           	line	55
+   777                           	
+   778  06EA                     l1766:	
+   779                           ;program.c: 55: PORTB=dat;
+   780  06EA  0870               	movf	(dis@dat),w
+   781  06EB  1283               	bcf	status, 5	;RP0=0, select bank0
+   782  06EC  1303               	bcf	status, 6	;RP1=0, select bank0
+   783  06ED  0086               	movwf	(6)	;volatile
+   784                           	line	56
+   785                           	
+   786  06EE                     l1768:	
+   787                           ;program.c: 56: RC0=1;
+   788  06EE  1407               	bsf	(56/8),(56)&7
+   789                           	line	57
+   790                           	
+   791  06EF                     l1770:	
+   792                           ;program.c: 57: RW=0;
+   793  06EF  1683               	bsf	status, 5	;RP0=1, select bank1
+   794  06F0  1303               	bcf	status, 6	;RP1=0, select bank1
+   795  06F1  1114               	bcf	(1186/8)^080h,(1186)&7
+   796                           	line	58
+   797                           	
+   798  06F2                     l1772:	
+   799                           ;program.c: 58: RC1=1;
+   800  06F2  1283               	bcf	status, 5	;RP0=0, select bank0
+   801  06F3  1303               	bcf	status, 6	;RP1=0, select bank0
+   802  06F4  1487               	bsf	(57/8),(57)&7
+   803                           	line	59
+   804                           ;program.c: 59: _delay((unsigned long)((2)*(10000000/4000.0)));
+   805                           	opt asmopt_off
+   806  06F5  3007               movlw	7
+   807  06F6  00F3               movwf	((??_dis+0)+0+1),f
+   808  06F7  307D               	movlw	125
+   809  06F8  00F2               movwf	((??_dis+0)+0),f
+   810  06F9                     u2207:
+   811  06F9  0BF2               	decfsz	((??_dis+0)+0),f
+   812  06FA  2EF9               	goto	u2207
+   813  06FB  0BF3               	decfsz	((??_dis+0)+0+1),f
+   814  06FC  2EF9               	goto	u2207
+   815                           opt asmopt_on
+   816                           
+   817                           	line	60
+   818                           	
+   819  06FD                     l1774:	
+   820                           ;program.c: 60: RC1=0;}
+   821  06FD  1283               	bcf	status, 5	;RP0=0, select bank0
+   822  06FE  1303               	bcf	status, 6	;RP1=0, select bank0
+   823  06FF  1087               	bcf	(57/8),(57)&7
+   824                           	
+   825  0700                     l581:	
+   826  0700  0008               	return
+   827                           	opt stack 0
+   828                           GLOBAL	__end_of_dis
+   829  0701                     	__end_of_dis:
+   830 ;; =============== function _dis ends ============
+   831                           
+   832                           	signat	_dis,4216
+   833                           	global	_cmd
+   834                           psect	text93,local,class=CODE,delta=2
+   835                           global __ptext93
+   836  0701                     __ptext93:
+   837                           
+   838 ;; *************** function _cmd *****************
+   839 ;; Defined at:
+   840 ;;		line 46 in file "C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   841 ;; Parameters:    Size  Location     Type
+   842 ;;  a               1    wreg     unsigned char 
+   843 ;; Auto vars:     Size  Location     Type
+   844 ;;  a               1    2[COMMON] unsigned char 
+   845 ;; Return value:  Size  Location     Type
+   846 ;;		None               void
+   847 ;; Registers used:
+   848 ;;		wreg
+   849 ;; Tracked objects:
+   850 ;;		On entry : 0/0
+   851 ;;		On exit  : 0/0
+   852 ;;		Unchanged: 0/0
+   853 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   854 ;;      Params:         0       0       0       0       0
+   855 ;;      Locals:         1       0       0       0       0
+   856 ;;      Temps:          2       0       0       0       0
+   857 ;;      Totals:         3       0       0       0       0
+   858 ;;Total ram usage:        3 bytes
+   859 ;; Hardware stack levels used:    1
+   860 ;; This function calls:
+   861 ;;		Nothing
+   862 ;; This function is called by:
+   863 ;;		_main
+   864 ;; This function uses a non-reentrant model
+   865 ;;
+   866                           psect	text93
+   867                           	file	"C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   868                           	line	46
+   869                           	global	__size_of_cmd
+   870  0018                     	__size_of_cmd	equ	__end_of_cmd-_cmd
+   871                           	
+   872  0701                     _cmd:	
+   873                           	opt	stack 7
+   874                           ; Regs used in _cmd: [wreg]
+   875                           ;cmd@a stored from wreg
+   876  0701  00F2               	movwf	(cmd@a)
+   877                           	line	47
+   878                           	
+   879  0702                     l1756:	
+   880                           ;program.c: 47: PORTB=a;
+   881  0702  0872               	movf	(cmd@a),w
+   882  0703  1283               	bcf	status, 5	;RP0=0, select bank0
+   883  0704  1303               	bcf	status, 6	;RP1=0, select bank0
+   884  0705  0086               	movwf	(6)	;volatile
+   885                           	line	48
+   886                           	
+   887  0706                     l1758:	
+   888                           ;program.c: 48: RC0=0;
+   889  0706  1007               	bcf	(56/8),(56)&7
+   890                           	line	49
+   891                           	
+   892  0707                     l1760:	
+   893                           ;program.c: 49: RW=0;
+   894  0707  1683               	bsf	status, 5	;RP0=1, select bank1
+   895  0708  1303               	bcf	status, 6	;RP1=0, select bank1
+   896  0709  1114               	bcf	(1186/8)^080h,(1186)&7
+   897                           	line	50
+   898                           	
+   899  070A                     l1762:	
+   900                           ;program.c: 50: RC1=1;
+   901  070A  1283               	bcf	status, 5	;RP0=0, select bank0
+   902  070B  1303               	bcf	status, 6	;RP1=0, select bank0
+   903  070C  1487               	bsf	(57/8),(57)&7
+   904                           	line	51
+   905                           ;program.c: 51: _delay((unsigned long)((2)*(10000000/4000.0)));
+   906                           	opt asmopt_off
+   907  070D  3007               movlw	7
+   908  070E  00F1               movwf	((??_cmd+0)+0+1),f
+   909  070F  307D               	movlw	125
+   910  0710  00F0               movwf	((??_cmd+0)+0),f
+   911  0711                     u2217:
+   912  0711  0BF0               	decfsz	((??_cmd+0)+0),f
+   913  0712  2F11               	goto	u2217
+   914  0713  0BF1               	decfsz	((??_cmd+0)+0+1),f
+   915  0714  2F11               	goto	u2217
+   916                           opt asmopt_on
+   917                           
+   918                           	line	52
+   919                           	
+   920  0715                     l1764:	
+   921                           ;program.c: 52: RC1=0;}
+   922  0715  1283               	bcf	status, 5	;RP0=0, select bank0
+   923  0716  1303               	bcf	status, 6	;RP1=0, select bank0
+   924  0717  1087               	bcf	(57/8),(57)&7
+   925                           	
+   926  0718                     l578:	
+   927  0718  0008               	return
+   928                           	opt stack 0
+   929                           GLOBAL	__end_of_cmd
+   930  0719                     	__end_of_cmd:
+   931 ;; =============== function _cmd ends ============
+   932                           
+   933                           	signat	_cmd,4216
+   934                           	global	_waiting
+   935                           psect	text94,local,class=CODE,delta=2
+   936                           global __ptext94
+   937  06D6                     __ptext94:
+   938                           
+   939 ;; *************** function _waiting *****************
+   940 ;; Defined at:
+   941 ;;		line 67 in file "C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   942 ;; Parameters:    Size  Location     Type
+   943 ;;  data            1    wreg     unsigned char 
+   944 ;; Auto vars:     Size  Location     Type
+   945 ;;  data            1    0[COMMON] unsigned char 
+   946 ;; Return value:  Size  Location     Type
+   947 ;;		None               void
+   948 ;; Registers used:
+   949 ;;		wreg
+   950 ;; Tracked objects:
+   951 ;;		On entry : 0/0
+   952 ;;		On exit  : 0/0
+   953 ;;		Unchanged: 0/0
+   954 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   955 ;;      Params:         0       0       0       0       0
+   956 ;;      Locals:         1       0       0       0       0
+   957 ;;      Temps:          0       0       0       0       0
+   958 ;;      Totals:         1       0       0       0       0
+   959 ;;Total ram usage:        1 bytes
+   960 ;; Hardware stack levels used:    1
+   961 ;; This function calls:
+   962 ;;		Nothing
+   963 ;; This function is called by:
+   964 ;;		_main
+   965 ;; This function uses a non-reentrant model
+   966 ;;
+   967                           psect	text94
+   968                           	file	"C:\PIC16F877A Demo Concepts\UART using RS485 chip 2\program.c"
+   969                           	line	67
+   970                           	global	__size_of_waiting
+   971  0014                     	__size_of_waiting	equ	__end_of_waiting-_waiting
+   972                           	
+   973  06D6                     _waiting:	
+   974                           	opt	stack 7
+   975                           ; Regs used in _waiting: [wreg]
+   976                           ;waiting@data stored from wreg
+   977                           	line	69
+   978  06D6  00F0               	movwf	(waiting@data)
+   979                           	line	68
+   980                           ;program.c: 68: do{
+   981                           	
+   982  06D7                     l590:	
+   983                           	line	69
+   984                           ;program.c: 69: RD0=1;
+   985  06D7  1283               	bcf	status, 5	;RP0=0, select bank0
+   986  06D8  1303               	bcf	status, 6	;RP1=0, select bank0
+   987  06D9  1408               	bsf	(64/8),(64)&7
+   988                           	line	70
+   989                           ;program.c: 70: RD1=1;
+   990  06DA  1488               	bsf	(65/8),(65)&7
+   991                           	line	71
+   992                           ;program.c: 71: while(RCIF==0);
+   993  06DB  2EDC               	goto	l591
+   994                           	
+   995  06DC                     l592:	
+   996                           	
+   997  06DC                     l591:	
+   998  06DC  1E8C               	btfss	(101/8),(101)&7
+   999  06DD  2EDF               	goto	u11
+  1000  06DE  2EE0               	goto	u10
+  1001  06DF                     u11:
+  1002  06DF  2EDC               	goto	l591
+  1003  06E0                     u10:
+  1004                           	
+  1005  06E0                     l593:	
+  1006                           	line	72
+  1007                           ;program.c: 72: RCIF=0;}
+  1008  06E0  128C               	bcf	(101/8),(101)&7
+  1009                           	line	73
+  1010                           	
+  1011  06E1                     l968:	
+  1012                           ;program.c: 73: while(RCREG!=data);
+  1013  06E1  081A               	movf	(26),w	;volatile
+  1014  06E2  0670               	xorwf	(waiting@data),w
+  1015  06E3  1D03               	skipz
+  1016  06E4  2EE6               	goto	u21
+  1017  06E5  2EE7               	goto	u20
+  1018  06E6                     u21:
+  1019  06E6  2ED7               	goto	l590
+  1020  06E7                     u20:
+  1021                           	
+  1022  06E7                     l594:	
+  1023                           	line	74
+  1024                           ;program.c: 74: RD0=0;
+  1025  06E7  1008               	bcf	(64/8),(64)&7
+  1026                           	line	75
+  1027                           ;program.c: 75: RD1=0;}
+  1028  06E8  1088               	bcf	(65/8),(65)&7
+  1029                           	
+  1030  06E9                     l595:	
+  1031  06E9  0008               	return
+  1032                           	opt stack 0
+  1033                           GLOBAL	__end_of_waiting
+  1034  06EA                     	__end_of_waiting:
+  1035 ;; =============== function _waiting ends ============
+  1036                           
+  1037                           	signat	_waiting,4216
+  1038                           psect	text95,local,class=CODE,delta=2
+  1039                           global __ptext95
+  1040  0000                     __ptext95:
+  1041                           	global	btemp
+  1042  007E                     	btemp set 07Eh
+  1043                           
+  1044                           	DABS	1,126,2	;btemp
+  1045                           	global	wtemp0
+  1046  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.80 build 6738 
+Symbol Table                                                                                   Sat Mar 29 14:29:03 2025
+
+                   pc 0002                    u10 06E0                    u11 06DF                    u20 06E7  
+                  u21 06E6                    _RW 04A2                    fsr 0004                   l570 07C1  
+                 l571 07C1                   l572 07C5                   l581 0700                   l573 07FC  
+                 l590 06D7                   l574 07FD                   l591 06DC                   l575 07FD  
+                 l592 06DC                   l584 0739                   l593 06E0                   l585 071F  
+                 l569 0791                   l594 06E7                   l578 0718                   l586 0748  
+                 l595 06E9                   l587 0748                   l968 06E1                   _RC0 0038  
+                 _RC1 0039                   _RD0 0040                   _RC2 003A                   _RD1 0041  
+                 _cmd 0701                   _dis 06EA                   fsr0 0004                  ?_cmd 0070  
+                l1800 0768                  l1810 0783                  l1802 076E                  l1820 0794  
+                l1812 0784                  l1804 0774                  ?_dis 0070                  l1830 07BD  
+                l1822 079E                  l1814 0788                  l1806 077A                  l1760 0707  
+                l1840 07F5                  l1832 07C6                  l1824 07A4                  l1816 078C  
+                l1808 0780                  l1762 070A                  l1770 06EF                  l1834 07D8  
+                l1826 07B1                  l1818 0791                  l1764 0715                  l1756 0702  
+                l1772 06F2                  l1780 0732                  l1836 07E2                  l1828 07B7  
+                l1758 0706                  l1774 06FD                  l1766 06EA                  l1782 0739  
+                l1838 07E8                  l1790 0753                  l1768 06EE                  l1776 071A  
+                l1792 0756                  l1784 0749                  l1778 071F                  l1794 0759  
+                l1786 074D                  l1796 075C                  l1788 0750                  l1798 0762  
+                STR_1 0009                  STR_2 0013                  u2207 06F9                  u2160 0747  
+                u2217 0711                  u2161 0746                  u2170 07C5                  u2171 07C4  
+                u2165 0743                  u2187 07AA                  u2197 07EE                  _RCIF 0065  
+                cmd@a 0072                  _main 0749                  btemp 007E                  start 0000  
+               ??_cmd 0070                 ??_dis 0072                 ?_main 0070                 _RCREG 001A  
+               _RCSTA 0018                 _SPBRG 0099                 _PORTB 0006                 _PORTC 0007  
+               _PORTD 0008                 _TRISB 0086                 _TRISC 0087                 _TRISD 0088  
+               _TXSTA 0098                 _print 0719                 pclath 000A       __end_of_waiting 06EA  
+               status 0003                 wtemp0 007E          __end_of_main 0800                ??_main 007B  
+              ?_print 0074                dis@dat 0070                print@a 0074                print@i 0079  
+           ??_waiting 0070        __pcstackCOMMON 0070         __end_of_print 0749               ??_print 0076  
+          __pmaintext 0749          __size_of_cmd 0018          __size_of_dis 0017               _waiting 06D6  
+end_of_initialization 06D2           waiting@data 0070   start_initialization 06D2           __end_of_cmd 0719  
+         __end_of_dis 0701             __pstrings 0003              ?_waiting 0070        __size_of_print 0030  
+         __stringbase 0008              __ptext90 0000              __ptext91 0719              __ptext92 06EA  
+            __ptext93 0701              __ptext94 06D6              __ptext95 0000      __size_of_waiting 0014  
+       __size_of_main 00B7             print@name 0078             stringcode 0003              stringdir 0003  
+            stringtab 0003  
