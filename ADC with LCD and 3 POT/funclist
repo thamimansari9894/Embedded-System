@@ -1,0 +1,10 @@
+___awdiv: CODE, 1173 0 121
+_delay: CODE, 1033 0 32
+___awmod: CODE, 1065 0 108
+_main: CODE, 1294 0 130
+_ADC1: CODE, 1424 0 208
+_dis: CODE, 1000 0 16
+_ADC2: CODE, 1632 0 208
+_ADC3: CODE, 1840 0 208
+_cmd: CODE, 1016 0 17
+Total: 1048
