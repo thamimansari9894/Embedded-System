@@ -1,0 +1,1158 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.80 build 6738 
+                                                                                               Tue Apr 15 15:51:27 2025
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 6738
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 6738"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_halfwave
+    43                           	FNCALL	_main,_delay
+    44                           	FNCALL	_main,_fullwave
+    45                           	FNCALL	_main,_wave
+    46                           	FNCALL	_wave,_delay
+    47                           	FNCALL	_fullwave,_delay
+    48                           	FNCALL	_halfwave,_delay
+    49                           	FNROOT	_main
+    50                           	global	halfwave@F517
+    51                           	global	fullwave@F520
+    52                           	global	wave@F523
+    53                           psect	idataBANK0,class=CODE,space=0,delta=2
+    54                           global __pidataBANK0
+    55  06B9                     __pidataBANK0:
+    56                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+    57                           	line	34
+    58                           
+    59                           ;initializer for halfwave@F517
+    60  06B9  3400               	retlw	0
+    61  06BA  3408               	retlw	08h
+    62  06BB  340C               	retlw	0Ch
+    63  06BC  3404               	retlw	04h
+    64  06BD  3406               	retlw	06h
+    65  06BE  3402               	retlw	02h
+    66  06BF  3403               	retlw	03h
+    67  06C0  3401               	retlw	01h
+    68  06C1  3409               	retlw	09h
+    69  06C2  3400               	retlw	0
+    70                           	line	40
+    71                           
+    72                           ;initializer for fullwave@F520
+    73  06C3  3400               	retlw	0
+    74  06C4  340C               	retlw	0Ch
+    75  06C5  3406               	retlw	06h
+    76  06C6  3403               	retlw	03h
+    77  06C7  3409               	retlw	09h
+    78  06C8  3400               	retlw	0
+    79                           	line	46
+    80                           
+    81                           ;initializer for wave@F523
+    82  06C9  3400               	retlw	0
+    83  06CA  3408               	retlw	08h
+    84  06CB  3404               	retlw	04h
+    85  06CC  3402               	retlw	02h
+    86  06CD  3401               	retlw	01h
+    87  06CE  3400               	retlw	0
+    88                           	global	_PORTC
+    89  0007                     _PORTC	set	7
+    90                           	global	_PORTD
+    91  0008                     _PORTD	set	8
+    92                           	global	_RD0
+    93  0040                     _RD0	set	64
+    94                           	global	_RD1
+    95  0041                     _RD1	set	65
+    96                           	global	_RD2
+    97  0042                     _RD2	set	66
+    98                           	global	_RD4
+    99  0044                     _RD4	set	68
+   100                           	global	_TRISC
+   101  0087                     _TRISC	set	135
+   102                           	global	_TRISD
+   103  0088                     _TRISD	set	136
+   104                           	file	"program.as"
+   105                           	line	#
+   106                           psect cinit,class=CODE,delta=2
+   107                           global start_initialization
+   108  06A7                     start_initialization:
+   109                           
+   110                           psect	dataBANK0,class=BANK0,space=1
+   111                           global __pdataBANK0
+   112  0020                     __pdataBANK0:
+   113                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   114                           	line	34
+   115  0020                     halfwave@F517:
+   116  0020                            ds      10
+   117                           
+   118                           psect	dataBANK0
+   119                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   120                           	line	40
+   121  002A                     fullwave@F520:
+   122  002A                            ds      6
+   123                           
+   124                           psect	dataBANK0
+   125                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   126                           	line	46
+   127  0030                     wave@F523:
+   128  0030                            ds      6
+   129                           
+   130                           global btemp
+   131                           psect inittext,class=CODE,delta=2
+   132                           global init_fetch,btemp
+   133                           ;	Called with low address in FSR and high address in W
+   134  0696                     init_fetch:
+   135  0696  087E               	movf btemp,w
+   136  0697  008A               	movwf pclath
+   137  0698  087F               	movf btemp+1,w
+   138  0699  0082               	movwf pc
+   139                           global init_ram
+   140                           ;Called with:
+   141                           ;	high address of idata address in btemp 
+   142                           ;	low address of idata address in btemp+1 
+   143                           ;	low address of data in FSR
+   144                           ;	high address + 1 of data in btemp-1
+   145  069A                     init_ram:
+   146  069A  2696  120A  118A   	fcall init_fetch
+   147  069D  0080               	movwf indf,f
+   148  069E  0A84               	incf fsr,f
+   149  069F  0804               	movf fsr,w
+   150  06A0  067D               	xorwf btemp-1,w
+   151  06A1  1903               	btfsc status,2
+   152  06A2  3400               	retlw 0
+   153  06A3  0AFF               	incf btemp+1,f
+   154  06A4  1903               	btfsc status,2
+   155  06A5  0AFE               	incf btemp,f
+   156  06A6  2E9A               	goto init_ram
+   157                           ; Initialize objects allocated to BANK0
+   158                           psect cinit,class=CODE,delta=2
+   159                           global init_ram, __pidataBANK0
+   160  06A7  1383               	bcf	status, 7	;select IRP bank0
+   161  06A8  3036               	movlw low(__pdataBANK0+22)
+   162  06A9  00FD               	movwf btemp-1,f
+   163  06AA  3006               	movlw high(__pidataBANK0)
+   164  06AB  00FE               	movwf btemp,f
+   165  06AC  30B9               	movlw low(__pidataBANK0)
+   166  06AD  00FF               	movwf btemp+1,f
+   167  06AE  3020               	movlw low(__pdataBANK0)
+   168  06AF  0084               	movwf fsr,f
+   169  06B0  120A  118A  269A   	fcall init_ram
+              120A  118A         
+   170                           psect cinit,class=CODE,delta=2
+   171                           global end_of_initialization
+   172                           
+   173                           ;End of C runtime variable initialization code
+   174                           
+   175  06B5                     end_of_initialization:
+   176  06B5  0183               clrf status
+   177  06B6  120A  118A  2FB5   ljmp _main	;jump to C main() function
+   178                           psect	cstackCOMMON,class=COMMON,space=1
+   179                           global __pcstackCOMMON
+   180  0070                     __pcstackCOMMON:
+   181                           	global	?_halfwave
+   182  0070                     ?_halfwave:	; 0 bytes @ 0x0
+   183                           	global	?_delay
+   184  0070                     ?_delay:	; 0 bytes @ 0x0
+   185                           	global	??_delay
+   186  0070                     ??_delay:	; 0 bytes @ 0x0
+   187                           	global	?_fullwave
+   188  0070                     ?_fullwave:	; 0 bytes @ 0x0
+   189                           	global	?_wave
+   190  0070                     ?_wave:	; 0 bytes @ 0x0
+   191                           	global	?_main
+   192  0070                     ?_main:	; 0 bytes @ 0x0
+   193                           	global	delay@i
+   194  0070                     delay@i:	; 2 bytes @ 0x0
+   195  0070                     	ds	2
+   196                           	global	??_halfwave
+   197  0072                     ??_halfwave:	; 0 bytes @ 0x2
+   198                           	global	??_fullwave
+   199  0072                     ??_fullwave:	; 0 bytes @ 0x2
+   200                           	global	??_wave
+   201  0072                     ??_wave:	; 0 bytes @ 0x2
+   202                           	global	fullwave@a
+   203  0072                     fullwave@a:	; 6 bytes @ 0x2
+   204                           	global	wave@a
+   205  0072                     wave@a:	; 6 bytes @ 0x2
+   206  0072                     	ds	6
+   207                           	global	fullwave@i
+   208  0078                     fullwave@i:	; 2 bytes @ 0x8
+   209                           	global	wave@i
+   210  0078                     wave@i:	; 2 bytes @ 0x8
+   211  0078                     	ds	2
+   212                           	global	??_main
+   213  007A                     ??_main:	; 0 bytes @ 0xA
+   214                           psect	cstackBANK0,class=BANK0,space=1
+   215                           global __pcstackBANK0
+   216  0036                     __pcstackBANK0:
+   217                           	global	halfwave@a
+   218  0036                     halfwave@a:	; 10 bytes @ 0x0
+   219  0036                     	ds	10
+   220                           	global	halfwave@i
+   221  0040                     halfwave@i:	; 2 bytes @ 0xA
+   222  0040                     	ds	2
+   223 ;;Data sizes: Strings 0, constant 0, data 22, bss 0, persistent 0 stack 0
+   224 ;;Auto spaces:   Size  Autos    Used
+   225 ;; COMMON          14     10      10
+   226 ;; BANK0           80     12      34
+   227 ;; BANK1           80      0       0
+   228 ;; BANK3           96      0       0
+   229 ;; BANK2           96      0       0
+   230                           
+   231 ;;
+   232 ;; Pointer list with targets:
+   233                           
+   234                           
+   235                           
+   236 ;;
+   237 ;; Critical Paths under _main in COMMON
+   238 ;;
+   239 ;;   _main->_fullwave
+   240 ;;   _main->_wave
+   241 ;;   _wave->_delay
+   242 ;;   _fullwave->_delay
+   243 ;;   _halfwave->_delay
+   244 ;;
+   245 ;; Critical Paths under _main in BANK0
+   246 ;;
+   247 ;;   _main->_halfwave
+   248 ;;
+   249 ;; Critical Paths under _main in BANK1
+   250 ;;
+   251 ;;   None.
+   252 ;;
+   253 ;; Critical Paths under _main in BANK3
+   254 ;;
+   255 ;;   None.
+   256 ;;
+   257 ;; Critical Paths under _main in BANK2
+   258 ;;
+   259 ;;   None.
+   260                           
+   261 ;;
+   262 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   263 ;;
+   264                           
+   265 ;;
+   266 ;;Call Graph Tables:
+   267 ;;
+   268 ;; ---------------------------------------------------------------------------------
+   269 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   270 ;; ---------------------------------------------------------------------------------
+   271 ;; (0) _main                                                 0     0      0     460
+   272 ;;                           _halfwave
+   273 ;;                              _delay
+   274 ;;                           _fullwave
+   275 ;;                               _wave
+   276 ;; ---------------------------------------------------------------------------------
+   277 ;; (1) _wave                                                 8     8      0     138
+   278 ;;                                              2 COMMON     8     8      0
+   279 ;;                              _delay
+   280 ;; ---------------------------------------------------------------------------------
+   281 ;; (1) _fullwave                                             8     8      0     138
+   282 ;;                                              2 COMMON     8     8      0
+   283 ;;                              _delay
+   284 ;; ---------------------------------------------------------------------------------
+   285 ;; (1) _halfwave                                            16    16      0     138
+   286 ;;                                              2 COMMON     4     4      0
+   287 ;;                                              0 BANK0     12    12      0
+   288 ;;                              _delay
+   289 ;; ---------------------------------------------------------------------------------
+   290 ;; (2) _delay                                                2     2      0      46
+   291 ;;                                              0 COMMON     2     2      0
+   292 ;; ---------------------------------------------------------------------------------
+   293 ;; Estimated maximum stack depth 2
+   294 ;; ---------------------------------------------------------------------------------
+   295                           
+   296 ;; Call Graph Graphs:
+   297                           
+   298 ;; _main (ROOT)
+   299 ;;   _halfwave
+   300 ;;     _delay
+   301 ;;   _delay
+   302 ;;   _fullwave
+   303 ;;     _delay
+   304 ;;   _wave
+   305 ;;     _delay
+   306 ;;
+   307                           
+   308 ;; Address spaces:
+   309                           
+   310 ;;Name               Size   Autos  Total    Cost      Usage
+   311 ;;BANK3               60      0       0       9        0.0%
+   312 ;;BITBANK3            60      0       0       8        0.0%
+   313 ;;SFR3                 0      0       0       4        0.0%
+   314 ;;BITSFR3              0      0       0       4        0.0%
+   315 ;;BANK2               60      0       0      11        0.0%
+   316 ;;BITBANK2            60      0       0      10        0.0%
+   317 ;;SFR2                 0      0       0       5        0.0%
+   318 ;;BITSFR2              0      0       0       5        0.0%
+   319 ;;SFR1                 0      0       0       2        0.0%
+   320 ;;BITSFR1              0      0       0       2        0.0%
+   321 ;;BANK1               50      0       0       7        0.0%
+   322 ;;BITBANK1            50      0       0       6        0.0%
+   323 ;;CODE                 0      0       0       0        0.0%
+   324 ;;DATA                 0      0      2E      12        0.0%
+   325 ;;ABS                  0      0      2C       3        0.0%
+   326 ;;NULL                 0      0       0       0        0.0%
+   327 ;;STACK                0      0       2       2        0.0%
+   328 ;;BANK0               50      C      22       5       42.5%
+   329 ;;BITBANK0            50      0       0       4        0.0%
+   330 ;;SFR0                 0      0       0       1        0.0%
+   331 ;;BITSFR0              0      0       0       1        0.0%
+   332 ;;COMMON               E      A       A       1       71.4%
+   333 ;;BITCOMMON            E      0       0       0        0.0%
+   334 ;;EEDATA             100      0       0       0        0.0%
+   335                           
+   336                           	global	_main
+   337                           psect	maintext,global,class=CODE,delta=2
+   338                           global __pmaintext
+   339  07B5                     __pmaintext:
+   340                           
+   341 ;; *************** function _main *****************
+   342 ;; Defined at:
+   343 ;;		line 14 in file "D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   344 ;; Parameters:    Size  Location     Type
+   345 ;;		None
+   346 ;; Auto vars:     Size  Location     Type
+   347 ;;		None
+   348 ;; Return value:  Size  Location     Type
+   349 ;;		None               void
+   350 ;; Registers used:
+   351 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   352 ;; Tracked objects:
+   353 ;;		On entry : 17F/0
+   354 ;;		On exit  : 0/0
+   355 ;;		Unchanged: 0/0
+   356 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   357 ;;      Params:         0       0       0       0       0
+   358 ;;      Locals:         0       0       0       0       0
+   359 ;;      Temps:          0       0       0       0       0
+   360 ;;      Totals:         0       0       0       0       0
+   361 ;;Total ram usage:        0 bytes
+   362 ;; Hardware stack levels required when called:    2
+   363 ;; This function calls:
+   364 ;;		_halfwave
+   365 ;;		_delay
+   366 ;;		_fullwave
+   367 ;;		_wave
+   368 ;; This function is called by:
+   369 ;;		Startup code after reset
+   370 ;; This function uses a non-reentrant model
+   371 ;;
+   372                           psect	maintext
+   373                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   374                           	line	14
+   375                           	global	__size_of_main
+   376  004B                     	__size_of_main	equ	__end_of_main-_main
+   377                           	
+   378  07B5                     _main:	
+   379                           	opt	stack 6
+   380                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   381                           	line	15
+   382                           	
+   383  07B5                     l1906:	
+   384                           ;program.c: 15: TRISD=0xF0;
+   385  07B5  30F0               	movlw	(0F0h)
+   386  07B6  1683               	bsf	status, 5	;RP0=1, select bank1
+   387  07B7  1303               	bcf	status, 6	;RP1=0, select bank1
+   388  07B8  0088               	movwf	(136)^080h	;volatile
+   389                           	line	16
+   390                           	
+   391  07B9                     l1908:	
+   392                           ;program.c: 16: TRISC=0x00;
+   393  07B9  0187               	clrf	(135)^080h	;volatile
+   394                           	line	17
+   395                           	
+   396  07BA                     l1910:	
+   397                           ;program.c: 17: PORTD=0x00;
+   398  07BA  1283               	bcf	status, 5	;RP0=0, select bank0
+   399  07BB  1303               	bcf	status, 6	;RP1=0, select bank0
+   400  07BC  0188               	clrf	(8)	;volatile
+   401                           	line	18
+   402                           	
+   403  07BD                     l1912:	
+   404                           ;program.c: 18: PORTC=0x00;
+   405  07BD  0187               	clrf	(7)	;volatile
+   406  07BE  2FBF               	goto	l1914
+   407                           	line	19
+   408                           ;program.c: 19: while(1){
+   409                           	
+   410  07BF                     l567:	
+   411                           	line	20
+   412                           	
+   413  07BF                     l1914:	
+   414                           ;program.c: 20: RD0=1;RD1=0;RD2=0;
+   415  07BF  1283               	bcf	status, 5	;RP0=0, select bank0
+   416  07C0  1303               	bcf	status, 6	;RP1=0, select bank0
+   417  07C1  1408               	bsf	(64/8),(64)&7
+   418                           	
+   419  07C2                     l1916:	
+   420  07C2  1088               	bcf	(65/8),(65)&7
+   421                           	
+   422  07C3                     l1918:	
+   423  07C3  1108               	bcf	(66/8),(66)&7
+   424                           	line	21
+   425                           	
+   426  07C4                     l1920:	
+   427                           ;program.c: 21: if(RD4==1){
+   428  07C4  1E08               	btfss	(68/8),(68)&7
+   429  07C5  2FC7               	goto	u2351
+   430  07C6  2FC8               	goto	u2350
+   431  07C7                     u2351:
+   432  07C7  2FD3               	goto	l1926
+   433  07C8                     u2350:
+   434                           	line	22
+   435                           	
+   436  07C8                     l1922:	
+   437                           ;program.c: 22: halfwave();
+   438  07C8  120A  118A  2771   	fcall	_halfwave
+              120A  118A         
+   439                           	line	23
+   440                           	
+   441  07CD                     l1924:	
+   442                           ;program.c: 23: delay();}
+   443  07CD  120A  118A  26CF   	fcall	_delay
+              120A  118A         
+   444  07D2  2FD3               	goto	l1926
+   445                           	
+   446  07D3                     l568:	
+   447                           	line	24
+   448                           	
+   449  07D3                     l1926:	
+   450                           ;program.c: 24: RD0=0;RD1=1;RD2=0;
+   451  07D3  1283               	bcf	status, 5	;RP0=0, select bank0
+   452  07D4  1303               	bcf	status, 6	;RP1=0, select bank0
+   453  07D5  1008               	bcf	(64/8),(64)&7
+   454                           	
+   455  07D6                     l1928:	
+   456  07D6  1488               	bsf	(65/8),(65)&7
+   457                           	
+   458  07D7                     l1930:	
+   459  07D7  1108               	bcf	(66/8),(66)&7
+   460                           	line	25
+   461                           	
+   462  07D8                     l1932:	
+   463                           ;program.c: 25: if(RD4==1){
+   464  07D8  1E08               	btfss	(68/8),(68)&7
+   465  07D9  2FDB               	goto	u2361
+   466  07DA  2FDC               	goto	u2360
+   467  07DB                     u2361:
+   468  07DB  2FE7               	goto	l1938
+   469  07DC                     u2360:
+   470                           	line	26
+   471                           	
+   472  07DC                     l1934:	
+   473                           ;program.c: 26: fullwave();
+   474  07DC  120A  118A  26EF   	fcall	_fullwave
+              120A  118A         
+   475                           	line	27
+   476                           	
+   477  07E1                     l1936:	
+   478                           ;program.c: 27: delay();}
+   479  07E1  120A  118A  26CF   	fcall	_delay
+              120A  118A         
+   480  07E6  2FE7               	goto	l1938
+   481                           	
+   482  07E7                     l569:	
+   483                           	line	28
+   484                           	
+   485  07E7                     l1938:	
+   486                           ;program.c: 28: RD0=0;RD1=0;RD2=1;
+   487  07E7  1283               	bcf	status, 5	;RP0=0, select bank0
+   488  07E8  1303               	bcf	status, 6	;RP1=0, select bank0
+   489  07E9  1008               	bcf	(64/8),(64)&7
+   490                           	
+   491  07EA                     l1940:	
+   492  07EA  1088               	bcf	(65/8),(65)&7
+   493                           	
+   494  07EB                     l1942:	
+   495  07EB  1508               	bsf	(66/8),(66)&7
+   496                           	line	29
+   497                           	
+   498  07EC                     l1944:	
+   499                           ;program.c: 29: if(RD4==1){
+   500  07EC  1E08               	btfss	(68/8),(68)&7
+   501  07ED  2FEF               	goto	u2371
+   502  07EE  2FF0               	goto	u2370
+   503  07EF                     u2371:
+   504  07EF  2FBF               	goto	l1914
+   505  07F0                     u2370:
+   506                           	line	30
+   507                           	
+   508  07F0                     l1946:	
+   509                           ;program.c: 30: wave();
+   510  07F0  120A  118A  2730   	fcall	_wave
+              120A  118A         
+   511                           	line	31
+   512                           	
+   513  07F5                     l1948:	
+   514                           ;program.c: 31: delay();}}}
+   515  07F5  120A  118A  26CF   	fcall	_delay
+              120A  118A         
+   516  07FA  2FBF               	goto	l1914
+   517                           	
+   518  07FB                     l570:	
+   519  07FB  2FBF               	goto	l1914
+   520                           	
+   521  07FC                     l571:	
+   522                           	line	19
+   523  07FC  2FBF               	goto	l1914
+   524                           	
+   525  07FD                     l572:	
+   526                           	line	31
+   527                           	
+   528  07FD                     l573:	
+   529                           	global	start
+   530  07FD  120A  118A  2800   	ljmp	start
+   531                           	opt stack 0
+   532                           GLOBAL	__end_of_main
+   533  0800                     	__end_of_main:
+   534 ;; =============== function _main ends ============
+   535                           
+   536                           	signat	_main,88
+   537                           	global	_wave
+   538                           psect	text145,local,class=CODE,delta=2
+   539                           global __ptext145
+   540  0730                     __ptext145:
+   541                           
+   542 ;; *************** function _wave *****************
+   543 ;; Defined at:
+   544 ;;		line 44 in file "D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   545 ;; Parameters:    Size  Location     Type
+   546 ;;		None
+   547 ;; Auto vars:     Size  Location     Type
+   548 ;;  a               6    2[COMMON] unsigned char [6]
+   549 ;;  i               2    8[COMMON] unsigned int 
+   550 ;; Return value:  Size  Location     Type
+   551 ;;		None               void
+   552 ;; Registers used:
+   553 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   554 ;; Tracked objects:
+   555 ;;		On entry : 0/0
+   556 ;;		On exit  : 0/0
+   557 ;;		Unchanged: 0/0
+   558 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   559 ;;      Params:         0       0       0       0       0
+   560 ;;      Locals:         8       0       0       0       0
+   561 ;;      Temps:          0       0       0       0       0
+   562 ;;      Totals:         8       0       0       0       0
+   563 ;;Total ram usage:        8 bytes
+   564 ;; Hardware stack levels used:    1
+   565 ;; Hardware stack levels required when called:    1
+   566 ;; This function calls:
+   567 ;;		_delay
+   568 ;; This function is called by:
+   569 ;;		_main
+   570 ;; This function uses a non-reentrant model
+   571 ;;
+   572                           psect	text145
+   573                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   574                           	line	44
+   575                           	global	__size_of_wave
+   576  0041                     	__size_of_wave	equ	__end_of_wave-_wave
+   577                           	
+   578  0730                     _wave:	
+   579                           	opt	stack 6
+   580                           ; Regs used in _wave: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   581                           	line	46
+   582                           	
+   583  0730                     l1890:	
+   584                           ;program.c: 45: unsigned int i;
+   585                           ;program.c: 46: unsigned char a[6]={0x00,0x08,0x04,0x02,0x01};
+   586  0730  3072               	movlw	(wave@a)&0ffh
+   587  0731  0084               	movwf	fsr0
+   588  0732  1283               	bcf	status, 5	;RP0=0, select bank0
+   589  0733  1303               	bcf	status, 6	;RP1=0, select bank0
+   590  0734  0830               	movf	(wave@F523),w
+   591  0735  0080               	movwf	indf
+   592  0736  0A84               	incf	fsr0,f
+   593  0737  0831               	movf	(wave@F523)+1,w
+   594  0738  0080               	movwf	indf
+   595  0739  0A84               	incf	fsr0,f
+   596  073A  0832               	movf	(wave@F523)+2,w
+   597  073B  0080               	movwf	indf
+   598  073C  0A84               	incf	fsr0,f
+   599  073D  0833               	movf	(wave@F523)+3,w
+   600  073E  0080               	movwf	indf
+   601  073F  0A84               	incf	fsr0,f
+   602  0740  0834               	movf	(wave@F523)+4,w
+   603  0741  0080               	movwf	indf
+   604  0742  0A84               	incf	fsr0,f
+   605  0743  0835               	movf	(wave@F523)+5,w
+   606  0744  0080               	movwf	indf
+   607                           	line	47
+   608                           	
+   609  0745                     l1892:	
+   610                           ;program.c: 47: for(i=0;i<6;i++){
+   611  0745  3000               	movlw	low(0)
+   612  0746  00F8               	movwf	(wave@i)
+   613  0747  3000               	movlw	high(0)
+   614  0748  00F9               	movwf	((wave@i))+1
+   615                           	
+   616  0749                     l1894:	
+   617  0749  3000               	movlw	high(06h)
+   618  074A  0279               	subwf	(wave@i+1),w
+   619  074B  3006               	movlw	low(06h)
+   620  074C  1903               	skipnz
+   621  074D  0278               	subwf	(wave@i),w
+   622  074E  1C03               	skipc
+   623  074F  2F51               	goto	u2331
+   624  0750  2F52               	goto	u2330
+   625  0751                     u2331:
+   626  0751  2F54               	goto	l1898
+   627  0752                     u2330:
+   628  0752  2F70               	goto	l594
+   629                           	
+   630  0753                     l1896:	
+   631  0753  2F70               	goto	l594
+   632                           	
+   633  0754                     l592:	
+   634                           	line	48
+   635                           	
+   636  0754                     l1898:	
+   637                           ;program.c: 48: PORTC=a[i];
+   638  0754  0878               	movf	(wave@i),w
+   639  0755  3E72               	addlw	wave@a&0ffh
+   640  0756  0084               	movwf	fsr0
+   641  0757  0800               	movf	indf,w
+   642  0758  1283               	bcf	status, 5	;RP0=0, select bank0
+   643  0759  1303               	bcf	status, 6	;RP1=0, select bank0
+   644  075A  0087               	movwf	(7)	;volatile
+   645                           	line	49
+   646                           	
+   647  075B                     l1900:	
+   648                           ;program.c: 49: delay();}}
+   649  075B  120A  118A  26CF   	fcall	_delay
+              120A  118A         
+   650                           	line	47
+   651                           	
+   652  0760                     l1902:	
+   653  0760  3001               	movlw	low(01h)
+   654  0761  07F8               	addwf	(wave@i),f
+   655  0762  1803               	skipnc
+   656  0763  0AF9               	incf	(wave@i+1),f
+   657  0764  3000               	movlw	high(01h)
+   658  0765  07F9               	addwf	(wave@i+1),f
+   659                           	
+   660  0766                     l1904:	
+   661  0766  3000               	movlw	high(06h)
+   662  0767  0279               	subwf	(wave@i+1),w
+   663  0768  3006               	movlw	low(06h)
+   664  0769  1903               	skipnz
+   665  076A  0278               	subwf	(wave@i),w
+   666  076B  1C03               	skipc
+   667  076C  2F6E               	goto	u2341
+   668  076D  2F6F               	goto	u2340
+   669  076E                     u2341:
+   670  076E  2F54               	goto	l1898
+   671  076F                     u2340:
+   672  076F  2F70               	goto	l594
+   673                           	
+   674  0770                     l593:	
+   675                           	line	49
+   676                           	
+   677  0770                     l594:	
+   678  0770  0008               	return
+   679                           	opt stack 0
+   680                           GLOBAL	__end_of_wave
+   681  0771                     	__end_of_wave:
+   682 ;; =============== function _wave ends ============
+   683                           
+   684                           	signat	_wave,88
+   685                           	global	_fullwave
+   686                           psect	text146,local,class=CODE,delta=2
+   687                           global __ptext146
+   688  06EF                     __ptext146:
+   689                           
+   690 ;; *************** function _fullwave *****************
+   691 ;; Defined at:
+   692 ;;		line 38 in file "D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   693 ;; Parameters:    Size  Location     Type
+   694 ;;		None
+   695 ;; Auto vars:     Size  Location     Type
+   696 ;;  a               6    2[COMMON] unsigned char [6]
+   697 ;;  i               2    8[COMMON] unsigned int 
+   698 ;; Return value:  Size  Location     Type
+   699 ;;		None               void
+   700 ;; Registers used:
+   701 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   702 ;; Tracked objects:
+   703 ;;		On entry : 0/0
+   704 ;;		On exit  : 0/0
+   705 ;;		Unchanged: 0/0
+   706 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   707 ;;      Params:         0       0       0       0       0
+   708 ;;      Locals:         8       0       0       0       0
+   709 ;;      Temps:          0       0       0       0       0
+   710 ;;      Totals:         8       0       0       0       0
+   711 ;;Total ram usage:        8 bytes
+   712 ;; Hardware stack levels used:    1
+   713 ;; Hardware stack levels required when called:    1
+   714 ;; This function calls:
+   715 ;;		_delay
+   716 ;; This function is called by:
+   717 ;;		_main
+   718 ;; This function uses a non-reentrant model
+   719 ;;
+   720                           psect	text146
+   721                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   722                           	line	38
+   723                           	global	__size_of_fullwave
+   724  0041                     	__size_of_fullwave	equ	__end_of_fullwave-_fullwave
+   725                           	
+   726  06EF                     _fullwave:	
+   727                           	opt	stack 6
+   728                           ; Regs used in _fullwave: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   729                           	line	40
+   730                           	
+   731  06EF                     l1874:	
+   732                           ;program.c: 39: unsigned int i;
+   733                           ;program.c: 40: unsigned char a[6]={0x00,0x0C,0x06,0x03,0x09};
+   734  06EF  3072               	movlw	(fullwave@a)&0ffh
+   735  06F0  0084               	movwf	fsr0
+   736  06F1  1283               	bcf	status, 5	;RP0=0, select bank0
+   737  06F2  1303               	bcf	status, 6	;RP1=0, select bank0
+   738  06F3  082A               	movf	(fullwave@F520),w
+   739  06F4  0080               	movwf	indf
+   740  06F5  0A84               	incf	fsr0,f
+   741  06F6  082B               	movf	(fullwave@F520)+1,w
+   742  06F7  0080               	movwf	indf
+   743  06F8  0A84               	incf	fsr0,f
+   744  06F9  082C               	movf	(fullwave@F520)+2,w
+   745  06FA  0080               	movwf	indf
+   746  06FB  0A84               	incf	fsr0,f
+   747  06FC  082D               	movf	(fullwave@F520)+3,w
+   748  06FD  0080               	movwf	indf
+   749  06FE  0A84               	incf	fsr0,f
+   750  06FF  082E               	movf	(fullwave@F520)+4,w
+   751  0700  0080               	movwf	indf
+   752  0701  0A84               	incf	fsr0,f
+   753  0702  082F               	movf	(fullwave@F520)+5,w
+   754  0703  0080               	movwf	indf
+   755                           	line	41
+   756                           	
+   757  0704                     l1876:	
+   758                           ;program.c: 41: for(i=0;i<6;i++){
+   759  0704  3000               	movlw	low(0)
+   760  0705  00F8               	movwf	(fullwave@i)
+   761  0706  3000               	movlw	high(0)
+   762  0707  00F9               	movwf	((fullwave@i))+1
+   763                           	
+   764  0708                     l1878:	
+   765  0708  3000               	movlw	high(06h)
+   766  0709  0279               	subwf	(fullwave@i+1),w
+   767  070A  3006               	movlw	low(06h)
+   768  070B  1903               	skipnz
+   769  070C  0278               	subwf	(fullwave@i),w
+   770  070D  1C03               	skipc
+   771  070E  2F10               	goto	u2311
+   772  070F  2F11               	goto	u2310
+   773  0710                     u2311:
+   774  0710  2F13               	goto	l1882
+   775  0711                     u2310:
+   776  0711  2F2F               	goto	l587
+   777                           	
+   778  0712                     l1880:	
+   779  0712  2F2F               	goto	l587
+   780                           	
+   781  0713                     l585:	
+   782                           	line	42
+   783                           	
+   784  0713                     l1882:	
+   785                           ;program.c: 42: PORTC=a[i];
+   786  0713  0878               	movf	(fullwave@i),w
+   787  0714  3E72               	addlw	fullwave@a&0ffh
+   788  0715  0084               	movwf	fsr0
+   789  0716  0800               	movf	indf,w
+   790  0717  1283               	bcf	status, 5	;RP0=0, select bank0
+   791  0718  1303               	bcf	status, 6	;RP1=0, select bank0
+   792  0719  0087               	movwf	(7)	;volatile
+   793                           	line	43
+   794                           	
+   795  071A                     l1884:	
+   796                           ;program.c: 43: delay();}}
+   797  071A  120A  118A  26CF   	fcall	_delay
+              120A  118A         
+   798                           	line	41
+   799                           	
+   800  071F                     l1886:	
+   801  071F  3001               	movlw	low(01h)
+   802  0720  07F8               	addwf	(fullwave@i),f
+   803  0721  1803               	skipnc
+   804  0722  0AF9               	incf	(fullwave@i+1),f
+   805  0723  3000               	movlw	high(01h)
+   806  0724  07F9               	addwf	(fullwave@i+1),f
+   807                           	
+   808  0725                     l1888:	
+   809  0725  3000               	movlw	high(06h)
+   810  0726  0279               	subwf	(fullwave@i+1),w
+   811  0727  3006               	movlw	low(06h)
+   812  0728  1903               	skipnz
+   813  0729  0278               	subwf	(fullwave@i),w
+   814  072A  1C03               	skipc
+   815  072B  2F2D               	goto	u2321
+   816  072C  2F2E               	goto	u2320
+   817  072D                     u2321:
+   818  072D  2F13               	goto	l1882
+   819  072E                     u2320:
+   820  072E  2F2F               	goto	l587
+   821                           	
+   822  072F                     l586:	
+   823                           	line	43
+   824                           	
+   825  072F                     l587:	
+   826  072F  0008               	return
+   827                           	opt stack 0
+   828                           GLOBAL	__end_of_fullwave
+   829  0730                     	__end_of_fullwave:
+   830 ;; =============== function _fullwave ends ============
+   831                           
+   832                           	signat	_fullwave,88
+   833                           	global	_halfwave
+   834                           psect	text147,local,class=CODE,delta=2
+   835                           global __ptext147
+   836  0771                     __ptext147:
+   837                           
+   838 ;; *************** function _halfwave *****************
+   839 ;; Defined at:
+   840 ;;		line 32 in file "D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   841 ;; Parameters:    Size  Location     Type
+   842 ;;		None
+   843 ;; Auto vars:     Size  Location     Type
+   844 ;;  a              10    0[BANK0 ] unsigned char [10]
+   845 ;;  i               2   10[BANK0 ] unsigned int 
+   846 ;; Return value:  Size  Location     Type
+   847 ;;		None               void
+   848 ;; Registers used:
+   849 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   850 ;; Tracked objects:
+   851 ;;		On entry : 0/0
+   852 ;;		On exit  : 0/0
+   853 ;;		Unchanged: 0/0
+   854 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   855 ;;      Params:         0       0       0       0       0
+   856 ;;      Locals:         0      12       0       0       0
+   857 ;;      Temps:          4       0       0       0       0
+   858 ;;      Totals:         4      12       0       0       0
+   859 ;;Total ram usage:       16 bytes
+   860 ;; Hardware stack levels used:    1
+   861 ;; Hardware stack levels required when called:    1
+   862 ;; This function calls:
+   863 ;;		_delay
+   864 ;; This function is called by:
+   865 ;;		_main
+   866 ;; This function uses a non-reentrant model
+   867 ;;
+   868                           psect	text147
+   869                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   870                           	line	32
+   871                           	global	__size_of_halfwave
+   872  0044                     	__size_of_halfwave	equ	__end_of_halfwave-_halfwave
+   873                           	
+   874  0771                     _halfwave:	
+   875                           	opt	stack 6
+   876                           ; Regs used in _halfwave: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   877                           	line	34
+   878                           	
+   879  0771                     l1858:	
+   880                           ;program.c: 33: unsigned int i;
+   881                           ;program.c: 34: unsigned char a[10]={0x00,0x08,0x0C,0x04,0x06,0x02,0x03,0x01,0x09};
+   882  0771  3036               	movlw	(halfwave@a)&0ffh
+   883  0772  0084               	movwf	fsr0
+   884  0773  3020               	movlw	low(halfwave@F517)
+   885  0774  00F2               	movwf	(??_halfwave+0)+0
+   886  0775  0804               	movf	fsr0,w
+   887  0776  00F3               	movwf	((??_halfwave+0)+0+1)
+   888  0777  300A               	movlw	10
+   889  0778  00F4               	movwf	((??_halfwave+0)+0+2)
+   890  0779                     u2280:
+   891  0779  0872               	movf	(??_halfwave+0)+0,w
+   892  077A  0084               	movwf	fsr0
+   893  077B  1383               	bcf	status, 7	;select IRP bank0
+   894                           	
+   895  077C  0800               	movf	indf,w
+   896  077D  00F5               	movwf	((??_halfwave+0)+0+3)
+   897  077E  0AF2               	incf	(??_halfwave+0)+0,f
+   898  077F  0873               	movf	((??_halfwave+0)+0+1),w
+   899  0780  0084               	movwf	fsr0
+   900                           	
+   901  0781  0875               	movf	((??_halfwave+0)+0+3),w
+   902  0782  0080               	movwf	indf
+   903  0783  0AF3               	incf	((??_halfwave+0)+0+1),f
+   904  0784  0BF4               	decfsz	((??_halfwave+0)+0+2),f
+   905  0785  2F79               	goto	u2280
+   906                           	line	35
+   907                           	
+   908  0786                     l1860:	
+   909                           ;program.c: 35: for(i=0;i<10;i++){
+   910  0786  3000               	movlw	low(0)
+   911  0787  1283               	bcf	status, 5	;RP0=0, select bank0
+   912  0788  1303               	bcf	status, 6	;RP1=0, select bank0
+   913  0789  00C0               	movwf	(halfwave@i)
+   914  078A  3000               	movlw	high(0)
+   915  078B  00C1               	movwf	((halfwave@i))+1
+   916                           	
+   917  078C                     l1862:	
+   918  078C  3000               	movlw	high(0Ah)
+   919  078D  0241               	subwf	(halfwave@i+1),w
+   920  078E  300A               	movlw	low(0Ah)
+   921  078F  1903               	skipnz
+   922  0790  0240               	subwf	(halfwave@i),w
+   923  0791  1C03               	skipc
+   924  0792  2F94               	goto	u2291
+   925  0793  2F95               	goto	u2290
+   926  0794                     u2291:
+   927  0794  2F97               	goto	l1866
+   928  0795                     u2290:
+   929  0795  2FB4               	goto	l580
+   930                           	
+   931  0796                     l1864:	
+   932  0796  2FB4               	goto	l580
+   933                           	
+   934  0797                     l578:	
+   935                           	line	36
+   936                           	
+   937  0797                     l1866:	
+   938                           ;program.c: 36: PORTC=a[i];
+   939  0797  0840               	movf	(halfwave@i),w
+   940  0798  3E36               	addlw	halfwave@a&0ffh
+   941  0799  0084               	movwf	fsr0
+   942  079A  1383               	bcf	status, 7	;select IRP bank0
+   943  079B  0800               	movf	indf,w
+   944  079C  0087               	movwf	(7)	;volatile
+   945                           	line	37
+   946                           	
+   947  079D                     l1868:	
+   948                           ;program.c: 37: delay();}}
+   949  079D  120A  118A  26CF   	fcall	_delay
+              120A  118A         
+   950                           	line	35
+   951                           	
+   952  07A2                     l1870:	
+   953  07A2  3001               	movlw	low(01h)
+   954  07A3  1283               	bcf	status, 5	;RP0=0, select bank0
+   955  07A4  1303               	bcf	status, 6	;RP1=0, select bank0
+   956  07A5  07C0               	addwf	(halfwave@i),f
+   957  07A6  1803               	skipnc
+   958  07A7  0AC1               	incf	(halfwave@i+1),f
+   959  07A8  3000               	movlw	high(01h)
+   960  07A9  07C1               	addwf	(halfwave@i+1),f
+   961                           	
+   962  07AA                     l1872:	
+   963  07AA  3000               	movlw	high(0Ah)
+   964  07AB  0241               	subwf	(halfwave@i+1),w
+   965  07AC  300A               	movlw	low(0Ah)
+   966  07AD  1903               	skipnz
+   967  07AE  0240               	subwf	(halfwave@i),w
+   968  07AF  1C03               	skipc
+   969  07B0  2FB2               	goto	u2301
+   970  07B1  2FB3               	goto	u2300
+   971  07B2                     u2301:
+   972  07B2  2F97               	goto	l1866
+   973  07B3                     u2300:
+   974  07B3  2FB4               	goto	l580
+   975                           	
+   976  07B4                     l579:	
+   977                           	line	37
+   978                           	
+   979  07B4                     l580:	
+   980  07B4  0008               	return
+   981                           	opt stack 0
+   982                           GLOBAL	__end_of_halfwave
+   983  07B5                     	__end_of_halfwave:
+   984 ;; =============== function _halfwave ends ============
+   985                           
+   986                           	signat	_halfwave,88
+   987                           	global	_delay
+   988                           psect	text148,local,class=CODE,delta=2
+   989                           global __ptext148
+   990  06CF                     __ptext148:
+   991                           
+   992 ;; *************** function _delay *****************
+   993 ;; Defined at:
+   994 ;;		line 50 in file "D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+   995 ;; Parameters:    Size  Location     Type
+   996 ;;		None
+   997 ;; Auto vars:     Size  Location     Type
+   998 ;;  i               2    0[COMMON] unsigned int 
+   999 ;; Return value:  Size  Location     Type
+  1000 ;;		None               void
+  1001 ;; Registers used:
+  1002 ;;		wreg
+  1003 ;; Tracked objects:
+  1004 ;;		On entry : 0/0
+  1005 ;;		On exit  : 0/0
+  1006 ;;		Unchanged: 0/0
+  1007 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1008 ;;      Params:         0       0       0       0       0
+  1009 ;;      Locals:         2       0       0       0       0
+  1010 ;;      Temps:          0       0       0       0       0
+  1011 ;;      Totals:         2       0       0       0       0
+  1012 ;;Total ram usage:        2 bytes
+  1013 ;; Hardware stack levels used:    1
+  1014 ;; This function calls:
+  1015 ;;		Nothing
+  1016 ;; This function is called by:
+  1017 ;;		_main
+  1018 ;;		_halfwave
+  1019 ;;		_fullwave
+  1020 ;;		_wave
+  1021 ;; This function uses a non-reentrant model
+  1022 ;;
+  1023                           psect	text148
+  1024                           	file	"D:\PIC16F877A Concepts\Stepper with keypad\program.c"
+  1025                           	line	50
+  1026                           	global	__size_of_delay
+  1027  0020                     	__size_of_delay	equ	__end_of_delay-_delay
+  1028                           	
+  1029  06CF                     _delay:	
+  1030                           	opt	stack 6
+  1031                           ; Regs used in _delay: [wreg]
+  1032                           	line	52
+  1033                           	
+  1034  06CF                     l1852:	
+  1035                           ;program.c: 51: unsigned int i;
+  1036                           ;program.c: 52: for(i=0;i<10000;i++);}
+  1037  06CF  3000               	movlw	low(0)
+  1038  06D0  00F0               	movwf	(delay@i)
+  1039  06D1  3000               	movlw	high(0)
+  1040  06D2  00F1               	movwf	((delay@i))+1
+  1041  06D3  3027               	movlw	high(02710h)
+  1042  06D4  0271               	subwf	(delay@i+1),w
+  1043  06D5  3010               	movlw	low(02710h)
+  1044  06D6  1903               	skipnz
+  1045  06D7  0270               	subwf	(delay@i),w
+  1046  06D8  1C03               	skipc
+  1047  06D9  2EDB               	goto	u2261
+  1048  06DA  2EDC               	goto	u2260
+  1049  06DB                     u2261:
+  1050  06DB  2EDE               	goto	l1856
+  1051  06DC                     u2260:
+  1052  06DC  2EEE               	goto	l599
+  1053                           	
+  1054  06DD                     l1854:	
+  1055  06DD  2EEE               	goto	l599
+  1056                           	
+  1057  06DE                     l597:	
+  1058                           	
+  1059  06DE                     l1856:	
+  1060  06DE  3001               	movlw	low(01h)
+  1061  06DF  07F0               	addwf	(delay@i),f
+  1062  06E0  1803               	skipnc
+  1063  06E1  0AF1               	incf	(delay@i+1),f
+  1064  06E2  3000               	movlw	high(01h)
+  1065  06E3  07F1               	addwf	(delay@i+1),f
+  1066  06E4  3027               	movlw	high(02710h)
+  1067  06E5  0271               	subwf	(delay@i+1),w
+  1068  06E6  3010               	movlw	low(02710h)
+  1069  06E7  1903               	skipnz
+  1070  06E8  0270               	subwf	(delay@i),w
+  1071  06E9  1C03               	skipc
+  1072  06EA  2EEC               	goto	u2271
+  1073  06EB  2EED               	goto	u2270
+  1074  06EC                     u2271:
+  1075  06EC  2EDE               	goto	l1856
+  1076  06ED                     u2270:
+  1077  06ED  2EEE               	goto	l599
+  1078                           	
+  1079  06EE                     l598:	
+  1080                           	
+  1081  06EE                     l599:	
+  1082  06EE  0008               	return
+  1083                           	opt stack 0
+  1084                           GLOBAL	__end_of_delay
+  1085  06EF                     	__end_of_delay:
+  1086 ;; =============== function _delay ends ============
+  1087                           
+  1088                           	signat	_delay,88
+  1089                           psect	text149,local,class=CODE,delta=2
+  1090                           global __ptext149
+  1091  0000                     __ptext149:
+  1092                           	global	btemp
+  1093  007E                     	btemp set 07Eh
+  1094                           
+  1095                           	DABS	1,126,2	;btemp
+  1096                           	global	wtemp0
+  1097  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.80 build 6738 
+Symbol Table                                                                                   Tue Apr 15 15:51:27 2025
+
+                   pc 0002                    fsr 0004                   l570 07FB                   l571 07FC  
+                 l580 07B4                   l572 07FD                   l573 07FD                   l567 07BF  
+                 l592 0754                   l568 07D3                   l585 0713                   l593 0770  
+                 l569 07E7                   l578 0797                   l586 072F                   l594 0770  
+                 l579 07B4                   l587 072F                   l597 06DE                   l598 06EE  
+                 l599 06EE                   _RD0 0040                   _RD1 0041                   _RD2 0042  
+                 _RD4 0044                   fsr0 0004                   indf 0000                  l1900 075B  
+                l1902 0760                  l1910 07BA                  l1904 0766                  l1920 07C4  
+                l1912 07BD                  l1930 07D7                  l1922 07C8                  l1914 07BF  
+                l1906 07B5                  l1852 06CF                  l1860 0786                  l1940 07EA  
+                l1932 07D8                  l1924 07CD                  l1916 07C2                  l1908 07B9  
+                l1854 06DD                  l1870 07A2                  l1862 078C                  l1942 07EB  
+                l1934 07DC                  l1926 07D3                  l1918 07C3                  l1856 06DE  
+                l1872 07AA                  l1864 0796                  l1880 0712                  l1944 07EC  
+                l1936 07E1                  l1928 07D6                  l1866 0797                  l1858 0771  
+                l1882 0713                  l1874 06EF                  l1890 0730                  l1946 07F0  
+                l1938 07E7                  l1868 079D                  l1884 071A                  l1876 0704  
+                l1892 0745                  l1948 07F5                  l1886 071F                  l1878 0708  
+                l1894 0749                  l1888 0725                  l1896 0753                  l1898 0754  
+                u2300 07B3                  u2301 07B2                  u2310 0711                  u2311 0710  
+                u2320 072E                  u2321 072D                  u2330 0752                  u2331 0751  
+                u2260 06DC                  u2340 076F                  u2261 06DB                  u2341 076E  
+                u2270 06ED                  u2350 07C8                  u2271 06EC                  u2351 07C7  
+                u2280 0779                  u2360 07DC                  u2361 07DB                  u2290 0795  
+                u2370 07F0                  u2291 0794                  u2371 07EF                  _main 07B5  
+                _wave 0730                  btemp 007E                  start 0000                 ?_main 0070  
+               ?_wave 0070                 _PORTC 0007                 _PORTD 0008                 _TRISC 0087  
+               _TRISD 0088                 _delay 06CF                 pclath 000A                 wave@a 0072  
+               wave@i 0078                 status 0003                 wtemp0 007E          __end_of_main 0800  
+        __end_of_wave 0771                ??_main 007A                ??_wave 0072                ?_delay 0070  
+    __end_of_halfwave 07B5                delay@i 0070      __end_of_fullwave 0730        __pcstackCOMMON 0070  
+        __pidataBANK0 06B9         __end_of_delay 06EF               ??_delay 0070            __pmaintext 07B5  
+           ?_halfwave 0070             ?_fullwave 0070            ??_halfwave 0072  end_of_initialization 06B5  
+             init_ram 069A            ??_fullwave 0072          fullwave@F520 002A   start_initialization 06A7  
+         __pdataBANK0 0020         __pcstackBANK0 0036     __size_of_halfwave 0044     __size_of_fullwave 0041  
+           __ptext145 0730             __ptext146 06EF             __ptext147 0771             __ptext148 06CF  
+           __ptext149 0000        __size_of_delay 0020             halfwave@a 0036             halfwave@i 0040  
+           init_fetch 0696             fullwave@a 0072             fullwave@i 0078              _halfwave 0771  
+       __size_of_main 004B         __size_of_wave 0041              _fullwave 06EF              wave@F523 0030  
+        halfwave@F517 0020  

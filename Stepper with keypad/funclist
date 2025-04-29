@@ -1,0 +1,6 @@
+_delay: CODE, 1743 0 32
+_wave: CODE, 1840 0 65
+_main: CODE, 1973 0 75
+_fullwave: CODE, 1775 0 65
+_halfwave: CODE, 1905 0 68
+Total: 305
