@@ -1,0 +1,300 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.80 build 6738 
+                                                                                               Wed Apr 09 16:18:06 2025
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 6738
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 6738"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNROOT	_main
+    43                           	global	_PORTB
+    44                           psect	maintext,global,class=CODE,delta=2
+    45                           global __pmaintext
+    46  07E6                     __pmaintext:
+    47  0006                     _PORTB	set	6
+    48                           	global	_PORTD
+    49  0008                     _PORTD	set	8
+    50                           	global	_T1CON
+    51  0010                     _T1CON	set	16
+    52                           	global	_TMR1H
+    53  000F                     _TMR1H	set	15
+    54                           	global	_TMR1L
+    55  000E                     _TMR1L	set	14
+    56                           	global	_TRISB
+    57  0086                     _TRISB	set	134
+    58                           	global	_TRISD
+    59  0088                     _TRISD	set	136
+    60                           	file	"program.as"
+    61                           	line	#
+    62                           psect cinit,class=CODE,delta=2
+    63                           global start_initialization
+    64  07E2                     start_initialization:
+    65                           
+    66                           psect cinit,class=CODE,delta=2
+    67                           global end_of_initialization
+    68                           
+    69                           ;End of C runtime variable initialization code
+    70                           
+    71  07E2                     end_of_initialization:
+    72  07E2  0183               clrf status
+    73  07E3  120A  118A  2FE6   ljmp _main	;jump to C main() function
+    74                           psect	cstackCOMMON,class=COMMON,space=1
+    75                           global __pcstackCOMMON
+    76  0000                     __pcstackCOMMON:
+    77                           	global	?_main
+    78  0000                     ?_main:	; 0 bytes @ 0x0
+    79                           	global	??_main
+    80  0000                     ??_main:	; 0 bytes @ 0x0
+    81 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+    82 ;;Auto spaces:   Size  Autos    Used
+    83 ;; COMMON          14      0       0
+    84 ;; BANK0           80      0       0
+    85 ;; BANK1           80      0       0
+    86 ;; BANK3           96      0       0
+    87 ;; BANK2           96      0       0
+    88                           
+    89 ;;
+    90 ;; Pointer list with targets:
+    91                           
+    92                           
+    93                           
+    94 ;;
+    95 ;; Critical Paths under _main in COMMON
+    96 ;;
+    97 ;;   None.
+    98 ;;
+    99 ;; Critical Paths under _main in BANK0
+   100 ;;
+   101 ;;   None.
+   102 ;;
+   103 ;; Critical Paths under _main in BANK1
+   104 ;;
+   105 ;;   None.
+   106 ;;
+   107 ;; Critical Paths under _main in BANK3
+   108 ;;
+   109 ;;   None.
+   110 ;;
+   111 ;; Critical Paths under _main in BANK2
+   112 ;;
+   113 ;;   None.
+   114                           
+   115 ;;
+   116 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   117 ;;
+   118                           
+   119 ;;
+   120 ;;Call Graph Tables:
+   121 ;;
+   122 ;; ---------------------------------------------------------------------------------
+   123 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   124 ;; ---------------------------------------------------------------------------------
+   125 ;; (0) _main                                                 0     0      0       0
+   126 ;; ---------------------------------------------------------------------------------
+   127 ;; Estimated maximum stack depth 0
+   128 ;; ---------------------------------------------------------------------------------
+   129                           
+   130 ;; Call Graph Graphs:
+   131                           
+   132 ;; _main (ROOT)
+   133 ;;
+   134                           
+   135 ;; Address spaces:
+   136                           
+   137 ;;Name               Size   Autos  Total    Cost      Usage
+   138 ;;BITCOMMON            E      0       0       0        0.0%
+   139 ;;EEDATA             100      0       0       0        0.0%
+   140 ;;NULL                 0      0       0       0        0.0%
+   141 ;;CODE                 0      0       0       0        0.0%
+   142 ;;COMMON               E      0       0       1        0.0%
+   143 ;;BITSFR0              0      0       0       1        0.0%
+   144 ;;SFR0                 0      0       0       1        0.0%
+   145 ;;BITSFR1              0      0       0       2        0.0%
+   146 ;;SFR1                 0      0       0       2        0.0%
+   147 ;;STACK                0      0       0       2        0.0%
+   148 ;;ABS                  0      0       0       3        0.0%
+   149 ;;BITBANK0            50      0       0       4        0.0%
+   150 ;;BITSFR3              0      0       0       4        0.0%
+   151 ;;SFR3                 0      0       0       4        0.0%
+   152 ;;BANK0               50      0       0       5        0.0%
+   153 ;;BITSFR2              0      0       0       5        0.0%
+   154 ;;SFR2                 0      0       0       5        0.0%
+   155 ;;BITBANK1            50      0       0       6        0.0%
+   156 ;;BANK1               50      0       0       7        0.0%
+   157 ;;BITBANK3            60      0       0       8        0.0%
+   158 ;;BANK3               60      0       0       9        0.0%
+   159 ;;BITBANK2            60      0       0      10        0.0%
+   160 ;;BANK2               60      0       0      11        0.0%
+   161 ;;DATA                 0      0       0      12        0.0%
+   162                           
+   163                           	global	_main
+   164                           psect	maintext
+   165                           
+   166 ;; *************** function _main *****************
+   167 ;; Defined at:
+   168 ;;		line 2 in file "D:\PIC16F877A Concepts\Counter 1(0 to 256 bina)\program.c"
+   169 ;; Parameters:    Size  Location     Type
+   170 ;;		None
+   171 ;; Auto vars:     Size  Location     Type
+   172 ;;		None
+   173 ;; Return value:  Size  Location     Type
+   174 ;;		None               void
+   175 ;; Registers used:
+   176 ;;		wreg, status,2
+   177 ;; Tracked objects:
+   178 ;;		On entry : 17F/0
+   179 ;;		On exit  : 0/0
+   180 ;;		Unchanged: 0/0
+   181 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   182 ;;      Params:         0       0       0       0       0
+   183 ;;      Locals:         0       0       0       0       0
+   184 ;;      Temps:          0       0       0       0       0
+   185 ;;      Totals:         0       0       0       0       0
+   186 ;;Total ram usage:        0 bytes
+   187 ;; This function calls:
+   188 ;;		Nothing
+   189 ;; This function is called by:
+   190 ;;		Startup code after reset
+   191 ;; This function uses a non-reentrant model
+   192 ;;
+   193                           psect	maintext
+   194                           	file	"D:\PIC16F877A Concepts\Counter 1(0 to 256 bina)\program.c"
+   195                           	line	2
+   196                           	global	__size_of_main
+   197  001A                     	__size_of_main	equ	__end_of_main-_main
+   198                           	
+   199  07E6                     _main:	
+   200                           	opt	stack 8
+   201                           ; Regs used in _main: [wreg+status,2]
+   202                           	line	3
+   203                           	
+   204  07E6                     l931:	
+   205                           ;program.c: 3: TRISD=0x00;
+   206  07E6  1683               	bsf	status, 5	;RP0=1, select bank1
+   207  07E7  1303               	bcf	status, 6	;RP1=0, select bank1
+   208  07E8  0188               	clrf	(136)^080h	;volatile
+   209                           	line	4
+   210                           ;program.c: 4: PORTD=0x00;
+   211  07E9  1283               	bcf	status, 5	;RP0=0, select bank0
+   212  07EA  1303               	bcf	status, 6	;RP1=0, select bank0
+   213  07EB  0188               	clrf	(8)	;volatile
+   214                           	line	5
+   215                           ;program.c: 5: TRISB=0x00;
+   216  07EC  1683               	bsf	status, 5	;RP0=1, select bank1
+   217  07ED  1303               	bcf	status, 6	;RP1=0, select bank1
+   218  07EE  0186               	clrf	(134)^080h	;volatile
+   219                           	line	6
+   220                           ;program.c: 6: PORTB=0x00;
+   221  07EF  1283               	bcf	status, 5	;RP0=0, select bank0
+   222  07F0  1303               	bcf	status, 6	;RP1=0, select bank0
+   223  07F1  0186               	clrf	(6)	;volatile
+   224                           	line	7
+   225                           	
+   226  07F2                     l933:	
+   227                           ;program.c: 7: T1CON=0x03;
+   228  07F2  3003               	movlw	(03h)
+   229  07F3  0090               	movwf	(16)	;volatile
+   230                           	line	8
+   231                           	
+   232  07F4                     l935:	
+   233                           ;program.c: 8: TMR1H=0x00;
+   234  07F4  018F               	clrf	(15)	;volatile
+   235                           	line	9
+   236                           	
+   237  07F5                     l937:	
+   238                           ;program.c: 9: TMR1L=0x00;
+   239  07F5  018E               	clrf	(14)	;volatile
+   240  07F6  2FF7               	goto	l939
+   241                           	line	10
+   242                           ;program.c: 10: while(1){
+   243                           	
+   244  07F7                     l559:	
+   245                           	line	11
+   246                           	
+   247  07F7                     l939:	
+   248                           ;program.c: 11: PORTB=TMR1L;
+   249  07F7  080E               	movf	(14),w	;volatile
+   250  07F8  0086               	movwf	(6)	;volatile
+   251                           	line	12
+   252                           	
+   253  07F9                     l941:	
+   254                           ;program.c: 12: PORTD=TMR1H;}}
+   255  07F9  080F               	movf	(15),w	;volatile
+   256  07FA  0088               	movwf	(8)	;volatile
+   257  07FB  2FF7               	goto	l939
+   258                           	
+   259  07FC                     l560:	
+   260                           	line	10
+   261  07FC  2FF7               	goto	l939
+   262                           	
+   263  07FD                     l561:	
+   264                           	line	12
+   265                           	
+   266  07FD                     l562:	
+   267                           	global	start
+   268  07FD  120A  118A  2800   	ljmp	start
+   269                           	opt stack 0
+   270                           GLOBAL	__end_of_main
+   271  0800                     	__end_of_main:
+   272 ;; =============== function _main ends ============
+   273                           
+   274                           	signat	_main,88
+   275                           psect	maintext
+   276                           	global	btemp
+   277  007E                     	btemp set 07Eh
+   278                           
+   279                           	DABS	1,126,2	;btemp
+   280                           	global	wtemp0
+   281  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.80 build 6738 
+Symbol Table                                                                                   Wed Apr 09 16:18:06 2025
+
+                 l560 07FC                   l561 07FD                   l562 07FD                   l559 07F7  
+                 l931 07E6                   l941 07F9                   l933 07F2                   l935 07F4  
+                 l937 07F5                   l939 07F7                  _main 07E6                  btemp 007E  
+                start 0000                 ?_main 0000                 _T1CON 0010                 _TMR1H 000F  
+               _TMR1L 000E                 _PORTB 0006                 _PORTD 0008                 _TRISB 0086  
+               _TRISD 0088                 status 0003                 wtemp0 007E          __end_of_main 0800  
+              ??_main 0000        __pcstackCOMMON 0000            __pmaintext 07E6  end_of_initialization 07E2  
+ start_initialization 07E2         __size_of_main 001A  
