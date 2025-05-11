@@ -1,0 +1,5 @@
+_EEPROM_read: CODE, 221 0 35
+_EEPROM_write: CODE, 256 0 22
+_main: CODE, 21 0 200
+_isr: CODE, 278 0 19
+Total: 276
