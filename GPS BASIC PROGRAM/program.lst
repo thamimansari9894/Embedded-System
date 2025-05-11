@@ -1,0 +1,446 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.80 build 6738 
+                                                                                               Sun Mar 16 09:17:56 2025
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 6738
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 6738"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           	FNCALL	_main,_wait
+    43                           	FNROOT	_main
+    44                           	global	_RCREG
+    45                           psect	text60,local,class=CODE,delta=2
+    46                           global __ptext60
+    47  0000                     __ptext60:
+    48  001A                     _RCREG	set	26
+    49                           	global	_RCSTA
+    50  0018                     _RCSTA	set	24
+    51                           	global	_TXREG
+    52  0019                     _TXREG	set	25
+    53                           	global	_RCIF
+    54  0065                     _RCIF	set	101
+    55                           	global	_TXIF
+    56  0064                     _TXIF	set	100
+    57                           	global	_SPBRG
+    58  0099                     _SPBRG	set	153
+    59                           	global	_TXSTA
+    60  0098                     _TXSTA	set	152
+    61                           	file	"program.as"
+    62                           	line	#
+    63                           psect cinit,class=CODE,delta=2
+    64                           global start_initialization
+    65  07BA                     start_initialization:
+    66                           
+    67                           psect cinit,class=CODE,delta=2
+    68                           global end_of_initialization
+    69                           
+    70                           ;End of C runtime variable initialization code
+    71                           
+    72  07BA                     end_of_initialization:
+    73  07BA  0183               clrf status
+    74  07BB  120A  118A  2FDE   ljmp _main	;jump to C main() function
+    75                           psect	cstackCOMMON,class=COMMON,space=1
+    76                           global __pcstackCOMMON
+    77  0070                     __pcstackCOMMON:
+    78                           	global	?_wait
+    79  0070                     ?_wait:	; 0 bytes @ 0x0
+    80                           	global	??_wait
+    81  0070                     ??_wait:	; 0 bytes @ 0x0
+    82                           	global	?_main
+    83  0070                     ?_main:	; 0 bytes @ 0x0
+    84  0070                     	ds	2
+    85                           	global	wait@reci
+    86  0072                     wait@reci:	; 2 bytes @ 0x2
+    87  0072                     	ds	2
+    88                           	global	wait@data
+    89  0074                     wait@data:	; 1 bytes @ 0x4
+    90  0074                     	ds	1
+    91                           	global	??_main
+    92  0075                     ??_main:	; 0 bytes @ 0x5
+    93 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+    94 ;;Auto spaces:   Size  Autos    Used
+    95 ;; COMMON          14      5       5
+    96 ;; BANK0           80      0       0
+    97 ;; BANK1           80      0       0
+    98 ;; BANK3           96      0       0
+    99 ;; BANK2           96      0       0
+   100                           
+   101 ;;
+   102 ;; Pointer list with targets:
+   103                           
+   104                           
+   105                           
+   106 ;;
+   107 ;; Critical Paths under _main in COMMON
+   108 ;;
+   109 ;;   _main->_wait
+   110 ;;
+   111 ;; Critical Paths under _main in BANK0
+   112 ;;
+   113 ;;   None.
+   114 ;;
+   115 ;; Critical Paths under _main in BANK1
+   116 ;;
+   117 ;;   None.
+   118 ;;
+   119 ;; Critical Paths under _main in BANK3
+   120 ;;
+   121 ;;   None.
+   122 ;;
+   123 ;; Critical Paths under _main in BANK2
+   124 ;;
+   125 ;;   None.
+   126                           
+   127 ;;
+   128 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   129 ;;
+   130                           
+   131 ;;
+   132 ;;Call Graph Tables:
+   133 ;;
+   134 ;; ---------------------------------------------------------------------------------
+   135 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   136 ;; ---------------------------------------------------------------------------------
+   137 ;; (0) _main                                                 0     0      0      30
+   138 ;;                               _wait
+   139 ;; ---------------------------------------------------------------------------------
+   140 ;; (1) _wait                                                 5     5      0      30
+   141 ;;                                              0 COMMON     5     5      0
+   142 ;; ---------------------------------------------------------------------------------
+   143 ;; Estimated maximum stack depth 1
+   144 ;; ---------------------------------------------------------------------------------
+   145                           
+   146 ;; Call Graph Graphs:
+   147                           
+   148 ;; _main (ROOT)
+   149 ;;   _wait
+   150 ;;
+   151                           
+   152 ;; Address spaces:
+   153                           
+   154 ;;Name               Size   Autos  Total    Cost      Usage
+   155 ;;BITCOMMON            E      0       0       0        0.0%
+   156 ;;EEDATA             100      0       0       0        0.0%
+   157 ;;NULL                 0      0       0       0        0.0%
+   158 ;;CODE                 0      0       0       0        0.0%
+   159 ;;COMMON               E      5       5       1       35.7%
+   160 ;;BITSFR0              0      0       0       1        0.0%
+   161 ;;SFR0                 0      0       0       1        0.0%
+   162 ;;BITSFR1              0      0       0       2        0.0%
+   163 ;;SFR1                 0      0       0       2        0.0%
+   164 ;;STACK                0      0       1       2        0.0%
+   165 ;;ABS                  0      0       0       3        0.0%
+   166 ;;BITBANK0            50      0       0       4        0.0%
+   167 ;;BITSFR3              0      0       0       4        0.0%
+   168 ;;SFR3                 0      0       0       4        0.0%
+   169 ;;BANK0               50      0       0       5        0.0%
+   170 ;;BITSFR2              0      0       0       5        0.0%
+   171 ;;SFR2                 0      0       0       5        0.0%
+   172 ;;BITBANK1            50      0       0       6        0.0%
+   173 ;;BANK1               50      0       0       7        0.0%
+   174 ;;BITBANK3            60      0       0       8        0.0%
+   175 ;;BANK3               60      0       0       9        0.0%
+   176 ;;BITBANK2            60      0       0      10        0.0%
+   177 ;;BANK2               60      0       0      11        0.0%
+   178 ;;DATA                 0      0       0      12        0.0%
+   179                           
+   180                           	global	_main
+   181                           psect	maintext,global,class=CODE,delta=2
+   182                           global __pmaintext
+   183  07DE                     __pmaintext:
+   184                           
+   185 ;; *************** function _main *****************
+   186 ;; Defined at:
+   187 ;;		line 4 in file "C:\PIC16F877A Demo Concepts\GPS control 1\program.c"
+   188 ;; Parameters:    Size  Location     Type
+   189 ;;		None
+   190 ;; Auto vars:     Size  Location     Type
+   191 ;;		None
+   192 ;; Return value:  Size  Location     Type
+   193 ;;		None               void
+   194 ;; Registers used:
+   195 ;;		wreg, status,2, status,0, pclath, cstack
+   196 ;; Tracked objects:
+   197 ;;		On entry : 17F/0
+   198 ;;		On exit  : 0/0
+   199 ;;		Unchanged: 0/0
+   200 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   201 ;;      Params:         0       0       0       0       0
+   202 ;;      Locals:         0       0       0       0       0
+   203 ;;      Temps:          0       0       0       0       0
+   204 ;;      Totals:         0       0       0       0       0
+   205 ;;Total ram usage:        0 bytes
+   206 ;; Hardware stack levels required when called:    1
+   207 ;; This function calls:
+   208 ;;		_wait
+   209 ;; This function is called by:
+   210 ;;		Startup code after reset
+   211 ;; This function uses a non-reentrant model
+   212 ;;
+   213                           psect	maintext
+   214                           	file	"C:\PIC16F877A Demo Concepts\GPS control 1\program.c"
+   215                           	line	4
+   216                           	global	__size_of_main
+   217  0022                     	__size_of_main	equ	__end_of_main-_main
+   218                           	
+   219  07DE                     _main:	
+   220                           	opt	stack 7
+   221                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   222                           	line	5
+   223                           	
+   224  07DE                     l1734:	
+   225                           ;program.c: 5: TXSTA=0b00100100;
+   226  07DE  3024               	movlw	(024h)
+   227  07DF  1683               	bsf	status, 5	;RP0=1, select bank1
+   228  07E0  1303               	bcf	status, 6	;RP1=0, select bank1
+   229  07E1  0098               	movwf	(152)^080h	;volatile
+   230                           	line	6
+   231                           ;program.c: 6: RCSTA=0b10010000;
+   232  07E2  3090               	movlw	(090h)
+   233  07E3  1283               	bcf	status, 5	;RP0=0, select bank0
+   234  07E4  1303               	bcf	status, 6	;RP1=0, select bank0
+   235  07E5  0098               	movwf	(24)	;volatile
+   236                           	line	7
+   237                           ;program.c: 7: SPBRG=64;
+   238  07E6  3040               	movlw	(040h)
+   239  07E7  1683               	bsf	status, 5	;RP0=1, select bank1
+   240  07E8  1303               	bcf	status, 6	;RP1=0, select bank1
+   241  07E9  0099               	movwf	(153)^080h	;volatile
+   242  07EA  2FEB               	goto	l1736
+   243                           	line	8
+   244                           ;program.c: 8: while(1){
+   245                           	
+   246  07EB                     l561:	
+   247                           	line	9
+   248                           	
+   249  07EB                     l1736:	
+   250                           ;program.c: 9: wait('A');
+   251  07EB  3041               	movlw	(041h)
+   252  07EC  120A  118A  27BE   	fcall	_wait
+              120A  118A         
+   253                           	line	10
+   254                           	
+   255  07F1                     l1738:	
+   256                           ;program.c: 10: TXREG='1';
+   257  07F1  3031               	movlw	(031h)
+   258  07F2  1283               	bcf	status, 5	;RP0=0, select bank0
+   259  07F3  1303               	bcf	status, 6	;RP1=0, select bank0
+   260  07F4  0099               	movwf	(25)	;volatile
+   261                           	line	11
+   262                           ;program.c: 11: while(TXIF==0);
+   263  07F5  2FF6               	goto	l562
+   264                           	
+   265  07F6                     l563:	
+   266                           	
+   267  07F6                     l562:	
+   268  07F6  1E0C               	btfss	(100/8),(100)&7
+   269  07F7  2FF9               	goto	u2161
+   270  07F8  2FFA               	goto	u2160
+   271  07F9                     u2161:
+   272  07F9  2FF6               	goto	l562
+   273  07FA                     u2160:
+   274                           	
+   275  07FA                     l564:	
+   276                           	line	12
+   277                           ;program.c: 12: TXIF=0;}}
+   278  07FA  120C               	bcf	(100/8),(100)&7
+   279  07FB  2FEB               	goto	l1736
+   280                           	
+   281  07FC                     l565:	
+   282                           	line	8
+   283  07FC  2FEB               	goto	l1736
+   284                           	
+   285  07FD                     l566:	
+   286                           	line	12
+   287                           	
+   288  07FD                     l567:	
+   289                           	global	start
+   290  07FD  120A  118A  2800   	ljmp	start
+   291                           	opt stack 0
+   292                           GLOBAL	__end_of_main
+   293  0800                     	__end_of_main:
+   294 ;; =============== function _main ends ============
+   295                           
+   296                           	signat	_main,88
+   297                           	global	_wait
+   298                           psect	text61,local,class=CODE,delta=2
+   299                           global __ptext61
+   300  07BE                     __ptext61:
+   301                           
+   302 ;; *************** function _wait *****************
+   303 ;; Defined at:
+   304 ;;		line 14 in file "C:\PIC16F877A Demo Concepts\GPS control 1\program.c"
+   305 ;; Parameters:    Size  Location     Type
+   306 ;;  data            1    wreg     unsigned char 
+   307 ;; Auto vars:     Size  Location     Type
+   308 ;;  data            1    4[COMMON] unsigned char 
+   309 ;;  reci            2    2[COMMON] int 
+   310 ;; Return value:  Size  Location     Type
+   311 ;;		None               void
+   312 ;; Registers used:
+   313 ;;		wreg
+   314 ;; Tracked objects:
+   315 ;;		On entry : 0/0
+   316 ;;		On exit  : 0/0
+   317 ;;		Unchanged: 0/0
+   318 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   319 ;;      Params:         0       0       0       0       0
+   320 ;;      Locals:         3       0       0       0       0
+   321 ;;      Temps:          2       0       0       0       0
+   322 ;;      Totals:         5       0       0       0       0
+   323 ;;Total ram usage:        5 bytes
+   324 ;; Hardware stack levels used:    1
+   325 ;; This function calls:
+   326 ;;		Nothing
+   327 ;; This function is called by:
+   328 ;;		_main
+   329 ;; This function uses a non-reentrant model
+   330 ;;
+   331                           psect	text61
+   332                           	file	"C:\PIC16F877A Demo Concepts\GPS control 1\program.c"
+   333                           	line	14
+   334                           	global	__size_of_wait
+   335  0020                     	__size_of_wait	equ	__end_of_wait-_wait
+   336                           	
+   337  07BE                     _wait:	
+   338                           	opt	stack 7
+   339                           ; Regs used in _wait: [wreg]
+   340                           ;wait@data stored from wreg
+   341  07BE  00F4               	movwf	(wait@data)
+   342                           	line	16
+   343                           ;program.c: 15: int reci;
+   344                           ;program.c: 16: do{
+   345                           	
+   346  07BF                     l570:	
+   347                           	line	17
+   348                           ;program.c: 17: while(RCIF==0);
+   349  07BF  2FC0               	goto	l571
+   350                           	
+   351  07C0                     l572:	
+   352                           	
+   353  07C0                     l571:	
+   354  07C0  1283               	bcf	status, 5	;RP0=0, select bank0
+   355  07C1  1303               	bcf	status, 6	;RP1=0, select bank0
+   356  07C2  1E8C               	btfss	(101/8),(101)&7
+   357  07C3  2FC5               	goto	u11
+   358  07C4  2FC6               	goto	u10
+   359  07C5                     u11:
+   360  07C5  2FC0               	goto	l571
+   361  07C6                     u10:
+   362  07C6  2FC7               	goto	l944
+   363                           	
+   364  07C7                     l573:	
+   365                           	line	18
+   366                           	
+   367  07C7                     l944:	
+   368                           ;program.c: 18: reci=RCREG;
+   369  07C7  081A               	movf	(26),w	;volatile
+   370  07C8  00F0               	movwf	(??_wait+0)+0
+   371  07C9  01F1               	clrf	(??_wait+0)+0+1
+   372  07CA  0870               	movf	0+(??_wait+0)+0,w
+   373  07CB  00F2               	movwf	(wait@reci)
+   374  07CC  0871               	movf	1+(??_wait+0)+0,w
+   375  07CD  00F3               	movwf	(wait@reci+1)
+   376                           	line	19
+   377                           	
+   378  07CE                     l946:	
+   379                           ;program.c: 19: RCIF=0;}
+   380  07CE  128C               	bcf	(101/8),(101)&7
+   381                           	line	20
+   382                           ;program.c: 20: while(reci!=data);}
+   383  07CF  0874               	movf	(wait@data),w
+   384  07D0  00F0               	movwf	(??_wait+0)+0
+   385  07D1  01F1               	clrf	(??_wait+0)+0+1
+   386  07D2  0873               	movf	(wait@reci+1),w
+   387  07D3  0671               	xorwf	1+(??_wait+0)+0,w
+   388  07D4  1D03               	skipz
+   389  07D5  2FD8               	goto	u25
+   390  07D6  0872               	movf	(wait@reci),w
+   391  07D7  0670               	xorwf	0+(??_wait+0)+0,w
+   392  07D8                     u25:
+   393                           
+   394  07D8  1D03               	skipz
+   395  07D9  2FDB               	goto	u21
+   396  07DA  2FDC               	goto	u20
+   397  07DB                     u21:
+   398  07DB  2FBF               	goto	l570
+   399  07DC                     u20:
+   400  07DC  2FDD               	goto	l575
+   401                           	
+   402  07DD                     l574:	
+   403                           	
+   404  07DD                     l575:	
+   405  07DD  0008               	return
+   406                           	opt stack 0
+   407                           GLOBAL	__end_of_wait
+   408  07DE                     	__end_of_wait:
+   409 ;; =============== function _wait ends ============
+   410                           
+   411                           	signat	_wait,4216
+   412                           psect	text62,local,class=CODE,delta=2
+   413                           global __ptext62
+   414  0000                     __ptext62:
+   415                           	global	btemp
+   416  007E                     	btemp set 07Eh
+   417                           
+   418                           	DABS	1,126,2	;btemp
+   419                           	global	wtemp0
+   420  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.80 build 6738 
+Symbol Table                                                                                   Sun Mar 16 09:17:56 2025
+
+                  u10 07C6                    u11 07C5                    u20 07DC                    u21 07DB  
+                  u25 07D8                   l561 07EB                   l570 07BF                   l562 07F6  
+                 l571 07C0                   l563 07F6                   l572 07C0                   l564 07FA  
+                 l573 07C7                   l565 07FC                   l574 07DD                   l566 07FD  
+                 l575 07DD                   l567 07FD                   l944 07C7                   l946 07CE  
+                l1734 07DE                  l1736 07EB                  l1738 07F1                  u2160 07FA  
+                u2161 07F9                  _RCIF 0065                  _TXIF 0064                  _main 07DE  
+                _wait 07BE                  btemp 007E                  start 0000                 ?_main 0070  
+               ?_wait 0070                 _RCREG 001A                 _RCSTA 0018                 _SPBRG 0099  
+               _TXREG 0019                 _TXSTA 0098                 status 0003                 wtemp0 007E  
+        __end_of_main 0800          __end_of_wait 07DE                ??_main 0075                ??_wait 0070  
+      __pcstackCOMMON 0070            __pmaintext 07DE  end_of_initialization 07BA   start_initialization 07BA  
+            __ptext60 0000              __ptext61 07BE              __ptext62 0000         __size_of_main 0022  
+       __size_of_wait 0020              wait@data 0074              wait@reci 0072  
